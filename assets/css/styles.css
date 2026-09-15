@@ -1,0 +1,295 @@
+﻿/* ==========================================================================
+   Khoraniya Prime Properties - Luxury Design System & Styling
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --color-sand-50: #FAF8F5;
+  --color-sand-100: #F3EFEA;
+  --color-sand-200: #E7E0D5;
+  --color-sand-300: #D8CEBE;
+  --color-sand-400: #C2B39E;
+
+  --color-gold-300: #E5CFA9;
+  --color-gold-400: #D5BA8E;
+  --color-gold-500: #C5A880;
+  --color-gold-600: #A8885B;
+  --color-gold-700: #886B40;
+
+  --color-charcoal-700: #33383F;
+  --color-charcoal-800: #202328;
+  --color-charcoal-900: #141619;
+  --color-charcoal-950: #0B0D0F;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Elevation */
+  --shadow-subtle: 0 4px 20px -2px rgba(20, 22, 25, 0.05);
+  --shadow-card: 0 12px 32px -4px rgba(20, 22, 25, 0.08);
+  --shadow-hover: 0 20px 40px -8px rgba(20, 22, 25, 0.14);
+  --shadow-gold: 0 10px 30px -5px rgba(197, 168, 128, 0.28);
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  color: var(--color-charcoal-800);
+  background-color: var(--color-sand-50);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--color-gold-500);
+  color: #FFFFFF;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-sand-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand-300);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-500);
+}
+
+/* Glassmorphism & Header */
+.glass-header {
+  background: rgba(250, 248, 245, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-header.scrolled {
+  background: rgba(250, 248, 245, 0.97);
+  box-shadow: 0 4px 24px -2px rgba(17, 18, 21, 0.07);
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* Button & Card Micro-Interactions */
+.btn-gold {
+  background: linear-gradient(135deg, #D5BA8E, #A8885B);
+  color: #FFFFFF;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 4px 14px 0 rgba(168, 136, 91, 0.28);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px 0 rgba(168, 136, 91, 0.42);
+  filter: brightness(1.05);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline-gold {
+  border: 1px solid var(--color-gold-500);
+  color: var(--color-gold-600);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--color-gold-500);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline-white {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(6px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-white:hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Luxury Property Cards */
+.property-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  border: 1px solid var(--color-sand-200);
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-gold-400);
+}
+
+.property-card:hover .property-img {
+  transform: scale(1.05);
+}
+
+.property-img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Trust Pillar Cards */
+.trust-card {
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.trust-card:hover {
+  background: #FFFFFF;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-subtle);
+  border-bottom-color: var(--color-gold-500);
+}
+
+/* Why Choose Us Cards */
+.why-card {
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-sand-200);
+}
+
+.why-card:hover {
+  border-color: var(--color-gold-400);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Accordion Smooth Height Animation */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  opacity: 0;
+}
+
+.accordion-item.active .accordion-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.accordion-item .accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+  color: var(--color-gold-600);
+}
+
+.accordion-item {
+  transition: border-color 0.25s ease;
+}
+
+.accordion-item.active {
+  border-color: var(--color-gold-400);
+  background-color: #FFFFFF;
+}
+
+/* Modal Animation */
+.modal-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-panel {
+  transform: scale(0.95) translateY(16px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.modal-backdrop.active .modal-panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Mobile Sticky Action Bar */
+.mobile-sticky-bar {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-sticky-bar.hidden-by-scroll {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hero Overlay Gradients */
+.hero-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 13, 15, 0.72) 0%,
+    rgba(11, 13, 15, 0.85) 60%,
+    rgba(11, 13, 15, 0.94) 100%
+  );
+}
+
+.banner-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(11, 13, 15, 0.88) 0%,
+    rgba(20, 22, 25, 0.82) 50%,
+    rgba(32, 35, 40, 0.78) 100%
+  );
+}
+
+/* Accessibility Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: 2.5rem !important;
+    line-height: 1.15 !important;
+  }
+}
