@@ -16,14 +16,14 @@ const defaultSiteData = {
     {
       id: "prop-1",
       title: "Chart Nexara",
-      location: "Mahindra World City, Ajmer Road, Jaipur",
-      tagline: "High Growth Location | High Appreciation Potential | Smart Investment",
-      rate: "₹45,000 / sq. yd",
-      size: "150 – 500 sq. yd",
-      sizes: ["150 sq. yd", "250 sq. yd", "350 sq. yd", "500 sq. yd"],
-      type: "Commercial Plot / Investment",
+      location: "Mahindra world city , Ajmer road , Jaipur",
+      tagline: "LOCATED IN MAHINDRA WORLD CITY (INDIA'S LARGEST SEZ)",
+      rate: "residential plot rate 34,950rupees , commercial plot rate 47000",
+      size: "100 gaj – 200gaj",
+      sizes: ["100 gaj", "150gaj", "200gaj"],
+      type: "Commercial & Residential Plots",
       frontage: "60 Ft. Wide Sector Road Frontage",
-      zoning: "Commercial / Retail / Industrial SEZ Corridor",
+      zoning: "Commercial / Residential / SEZ Zone",
       possession: "Immediate / Registry Ready",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
       gallery: [
@@ -37,12 +37,12 @@ const defaultSiteData = {
         url: "assets/docs/THE-CHART-NEXARA-M-.pdf",
         title: "THE CHART NEXARA-M-.pdf"
       },
-      description: "CHART NEXARA\n\nMahindra World City, Jaipur",
+      description: "CHART NEXARA Mahindra World City, Jaipur ✨ A Golden Opportunity to Invest in the Future! ✨ 🏡 200+ commercial and residential investment plots with direct highway connectivity.",
       highlights: [
         "📈 High Growth Location | High Appreciation Potential | Smart Investment",
         "Mahindra World City, Ajmer road , Jaipur",
-        "Official Demarcation & Sector Road Layout Plan Attached (PDF)",
-        "Prime Location in Rapidly Appreciating Commercial & Industrial SEZ Corridor"
+        "Located in Mahindra World City (India's Largest SEZ)",
+        "Official Demarcation & Sector Road Layout Plan Attached (PDF)"
       ]
     },
     {
@@ -127,20 +127,65 @@ document.addEventListener('DOMContentLoaded', async () => {
   initMobileActionBar();
 });
 
+function openCMSDatabase() {
+  return new Promise((resolve) => {
+    if (!window.indexedDB) return resolve(null);
+    try {
+      const req = window.indexedDB.open('KhoraniyaCMS_DB', 1);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('store')) {
+          db.createObjectStore('store');
+        }
+      };
+      req.onsuccess = (e) => resolve(e.target.result);
+      req.onerror = () => resolve(null);
+    } catch (err) {
+      resolve(null);
+    }
+  });
+}
+
+async function getFromIndexedDB(key) {
+  try {
+    const db = await openCMSDatabase();
+    if (!db) return null;
+    return new Promise((resolve) => {
+      const tx = db.transaction('store', 'readonly');
+      const req = tx.objectStore('store').get(key);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => resolve(null);
+    });
+  } catch (e) {
+    return null;
+  }
+}
+
 /**
- * Load Data from LocalStorage, JSON file, or Default Fallback
+ * Load Data from IndexedDB, LocalStorage, JSON file, or Default Fallback
  */
 async function loadSiteData() {
   try {
-    // 1. Check if admin saved local preview data in localStorage
-    const cachedData = localStorage.getItem('khoraniya_site_data');
-    if (cachedData) {
-      window.currentSiteData = JSON.parse(cachedData);
+    // 1. Check IndexedDB first (contains latest user CMS updates)
+    const idbData = await getFromIndexedDB('site_data');
+    if (idbData && Array.isArray(idbData.properties) && idbData.properties.length > 0) {
+      window.currentSiteData = idbData;
     } else {
-      // 2. Fetch from assets/data/site-data.json
-      const response = await fetch('assets/data/site-data.json?t=' + Date.now());
-      if (response.ok) {
-        window.currentSiteData = await response.json();
+      // 2. Check localStorage
+      const cachedData = localStorage.getItem('khoraniya_site_data');
+      if (cachedData) {
+        try {
+          const parsed = JSON.parse(cachedData);
+          if (parsed && Array.isArray(parsed.properties) && parsed.properties.length > 0) {
+            window.currentSiteData = parsed;
+          }
+        } catch (e) {}
+      } else {
+        // 3. Fetch from assets/data/site-data.json
+        const response = await fetch('assets/data/site-data.json?t=' + Date.now());
+        if (response.ok) {
+          window.currentSiteData = await response.json();
+        }
       }
     }
   } catch (err) {
@@ -150,7 +195,7 @@ async function loadSiteData() {
 
   // Build ID lookup dictionary for fast modal access
   propertyLookup = {};
-  if (window.currentSiteData.properties) {
+  if (window.currentSiteData && window.currentSiteData.properties) {
     window.currentSiteData.properties.forEach(p => {
       propertyLookup[p.id] = p;
     });
@@ -456,179 +501,194 @@ function initPropertyModal() {
   const nextBtn = document.getElementById('modal-gallery-next');
 
   window.openPropertyModal = function(id) {
-    const data = propertyLookup[id];
-    if (!data) return;
-    currentPropId = id;
-
-    // Rate
-    const rateVal = data.rate || 'Price on Request';
-    const rateElem = document.getElementById('modal-rate');
-    if (rateElem) rateElem.textContent = rateVal;
-    const rateBadge = document.getElementById('modal-rate-badge');
-    if (rateBadge) rateBadge.textContent = rateVal;
-
-    // Basic details
-    document.getElementById('modal-title').textContent = data.title || '';
-    document.getElementById('modal-location').textContent = data.location || '';
-    document.getElementById('modal-size').textContent = data.size || '';
-    document.getElementById('modal-type').textContent = data.type || '';
-    document.getElementById('modal-frontage').textContent = data.frontage || 'Standard Sector Frontage';
-    document.getElementById('modal-zoning').textContent = data.zoning || 'Commercial';
-    document.getElementById('modal-possession').textContent = data.possession || 'Immediate';
-    document.getElementById('modal-description').textContent = data.description || '';
-
-    // Multi-photo Gallery
-    let galleryList = [];
-    if (Array.isArray(data.gallery) && data.gallery.length > 0) {
-      galleryList = [...data.gallery];
-    } else if (data.image) {
-      galleryList = [data.image];
-    } else {
-      galleryList = ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80'];
-    }
-    activeModalGallery = galleryList;
-    activeModalGalleryIndex = 0;
-
-    // Toggle Prev/Next buttons if only 1 image
-    if (prevBtn && nextBtn) {
-      if (galleryList.length > 1) {
-        prevBtn.classList.remove('hidden');
-        nextBtn.classList.remove('hidden');
-      } else {
-        prevBtn.classList.add('hidden');
-        nextBtn.classList.add('hidden');
+    try {
+      let data = propertyLookup[id];
+      if (!data && window.currentSiteData && Array.isArray(window.currentSiteData.properties)) {
+        data = window.currentSiteData.properties.find(p => p.id === id || p.title === id);
       }
-    }
+      if (!data) {
+        console.warn('Property not found for ID:', id);
+        return;
+      }
+      currentPropId = id;
 
-    // Render Thumbnails Ribbon
-    const thumbsContainer = document.getElementById('modal-thumbnails-container');
-    if (thumbsContainer) {
-      if (galleryList.length > 1) {
-        thumbsContainer.classList.remove('hidden');
-        thumbsContainer.innerHTML = galleryList.map((imgUrl, idx) => `
-          <button type="button" onclick="selectModalGallerySlide(${idx})" data-index="${idx}" class="modal-thumb-btn flex-shrink-0 w-14 h-12 rounded overflow-hidden border border-stone-700 transition-all ${idx === 0 ? 'ring-2 ring-[#C5A880] opacity-100' : 'opacity-50 hover:opacity-100'}">
-            <img src="${escapeHtml(imgUrl)}" alt="Thumbnail ${idx + 1}" class="w-full h-full object-cover">
+      const safeSetText = (elemId, text) => {
+        const el = document.getElementById(elemId);
+        if (el) el.textContent = text || '';
+      };
+
+      // Rate
+      const rateVal = data.rate || 'Price on Request';
+      safeSetText('modal-rate', rateVal);
+      safeSetText('modal-rate-badge', rateVal);
+
+      // Basic details
+      safeSetText('modal-title', data.title);
+      safeSetText('modal-location', data.location);
+      safeSetText('modal-size', data.size);
+      safeSetText('modal-type', data.type || 'Commercial Plot');
+      safeSetText('modal-frontage', data.frontage || 'Standard Sector Frontage');
+      safeSetText('modal-zoning', data.zoning || 'Commercial / Retail');
+      safeSetText('modal-possession', data.possession || 'Immediate / Ready');
+      safeSetText('modal-description', data.description);
+
+      // Multi-photo Gallery
+      let galleryList = [];
+      if (Array.isArray(data.gallery) && data.gallery.length > 0) {
+        galleryList = [...data.gallery];
+      } else if (data.image) {
+        galleryList = [data.image];
+      } else {
+        galleryList = ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80'];
+      }
+      activeModalGallery = galleryList;
+      activeModalGalleryIndex = 0;
+
+      // Toggle Prev/Next buttons if only 1 image
+      if (prevBtn && nextBtn) {
+        if (galleryList.length > 1) {
+          prevBtn.classList.remove('hidden');
+          nextBtn.classList.remove('hidden');
+        } else {
+          prevBtn.classList.add('hidden');
+          nextBtn.classList.add('hidden');
+        }
+      }
+
+      // Render Thumbnails Ribbon
+      const thumbsContainer = document.getElementById('modal-thumbnails-container');
+      if (thumbsContainer) {
+        if (galleryList.length > 1) {
+          thumbsContainer.classList.remove('hidden');
+          thumbsContainer.innerHTML = galleryList.map((imgUrl, idx) => `
+            <button type="button" onclick="selectModalGallerySlide(${idx})" data-index="${idx}" class="modal-thumb-btn flex-shrink-0 w-14 h-12 rounded overflow-hidden border border-stone-700 transition-all ${idx === 0 ? 'ring-2 ring-[#C5A880] opacity-100' : 'opacity-50 hover:opacity-100'}">
+              <img src="${escapeHtml(imgUrl)}" alt="Thumbnail ${idx + 1}" class="w-full h-full object-cover">
+            </button>
+          `).join('');
+        } else {
+          thumbsContainer.classList.add('hidden');
+          thumbsContainer.innerHTML = '';
+        }
+      }
+
+      updateModalGalleryStage();
+
+      // Available Plot Sizes (Chips)
+      const chipsContainer = document.getElementById('modal-sizes-chips');
+      const selectedSizeText = document.getElementById('modal-selected-size-text');
+      
+      let sizesArr = [];
+      if (Array.isArray(data.sizes) && data.sizes.length > 0) {
+        sizesArr = data.sizes;
+      } else if (data.size) {
+        sizesArr = [data.size];
+      } else {
+        sizesArr = ['Commercial Plots on Request'];
+      }
+
+      activeSelectedPlotSize = sizesArr[0];
+      if (selectedSizeText) selectedSizeText.textContent = activeSelectedPlotSize;
+
+      if (chipsContainer) {
+        chipsContainer.innerHTML = sizesArr.map((sz, idx) => `
+          <button type="button" data-size="${escapeHtml(sz)}" onclick="selectModalPlotSize('${escapeHtml(sz)}')" class="modal-size-chip px-3.5 py-1.5 rounded text-xs font-semibold transition-all ${idx === 0 ? 'bg-[#C5A880] text-[#141619] border border-[#C5A880] font-bold shadow-sm' : 'bg-white text-[#33383F] border border-[#E7E0D5] hover:border-[#C5A880]'}">
+            ${escapeHtml(sz)}
           </button>
         `).join('');
-      } else {
-        thumbsContainer.classList.add('hidden');
-        thumbsContainer.innerHTML = '';
       }
-    }
 
-    updateModalGalleryStage();
-
-    // Available Plot Sizes (Chips)
-    const chipsContainer = document.getElementById('modal-sizes-chips');
-    const selectedSizeText = document.getElementById('modal-selected-size-text');
-    
-    let sizesArr = [];
-    if (Array.isArray(data.sizes) && data.sizes.length > 0) {
-      sizesArr = data.sizes;
-    } else if (data.size) {
-      sizesArr = [data.size];
-    } else {
-      sizesArr = ['Commercial Plots on Request'];
-    }
-
-    activeSelectedPlotSize = sizesArr[0];
-    if (selectedSizeText) selectedSizeText.textContent = activeSelectedPlotSize;
-
-    if (chipsContainer) {
-      chipsContainer.innerHTML = sizesArr.map((sz, idx) => `
-        <button type="button" data-size="${escapeHtml(sz)}" onclick="selectModalPlotSize('${escapeHtml(sz)}')" class="modal-size-chip px-3.5 py-1.5 rounded text-xs font-semibold transition-all ${idx === 0 ? 'bg-[#C5A880] text-[#141619] border border-[#C5A880] font-bold shadow-sm' : 'bg-white text-[#33383F] border border-[#E7E0D5] hover:border-[#C5A880]'}">
-          ${escapeHtml(sz)}
-        </button>
-      `).join('');
-    }
-
-    // Road Map Section
-    const roadmapTypeBadge = document.getElementById('modal-roadmap-type');
-    const roadmapContent = document.getElementById('modal-roadmap-content');
-    if (roadmapContent) {
-      if (data.roadmap && data.roadmap.url) {
-        const isPdf = (data.roadmap.type === 'pdf') || data.roadmap.url.startsWith('data:application/pdf') || data.roadmap.url.toLowerCase().endsWith('.pdf');
-        if (isPdf) {
+      // Road Map Section
+      const roadmapTypeBadge = document.getElementById('modal-roadmap-type');
+      const roadmapContent = document.getElementById('modal-roadmap-content');
+      if (roadmapContent) {
+        if (data.roadmap && data.roadmap.url) {
+          const isPdf = (data.roadmap.type === 'pdf') || data.roadmap.url.startsWith('data:application/pdf') || data.roadmap.url.toLowerCase().endsWith('.pdf');
+          if (isPdf) {
+            if (roadmapTypeBadge) {
+              roadmapTypeBadge.textContent = 'PDF Master Plan';
+              roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase';
+            }
+            roadmapContent.innerHTML = `
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                    PDF
+                  </div>
+                  <div>
+                    <h5 class="text-xs sm:text-sm font-bold text-[#141619]">${escapeHtml(data.roadmap.title || 'Official Master Layout & Sector Road Map')}</h5>
+                    <p class="text-[11px] text-[#555E68]">Approved Government / Sector Layout Document</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                  <a href="${escapeHtml(data.roadmap.url)}" download="${escapeHtml(data.title.replace(/[^a-zA-Z0-9]/g, '_'))}_RoadMap.pdf" target="_blank" class="w-full sm:w-auto text-center px-4 py-2 bg-[#141619] hover:bg-[#A8885B] text-white rounded text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>Download / View PDF</span>
+                  </a>
+                </div>
+              </div>
+            `;
+          } else {
+            // Image Roadmap
+            if (roadmapTypeBadge) {
+              roadmapTypeBadge.textContent = 'High-Res Layout Map';
+              roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase';
+            }
+            roadmapContent.innerHTML = `
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="openRoadmapLightbox('${escapeHtml(data.roadmap.url)}', '${escapeHtml(data.title)} - Road Map')">
+                  <img src="${escapeHtml(data.roadmap.url)}" alt="Road Map Preview" class="w-14 h-14 object-cover rounded border border-stone-300 flex-shrink-0 shadow-sm">
+                  <div>
+                    <h5 class="text-xs sm:text-sm font-bold text-[#141619] hover:text-[#A8885B] transition-colors">${escapeHtml(data.roadmap.title || 'Master Sector Road Map & Layout')}</h5>
+                    <p class="text-[11px] text-[#555E68]">Click to expand full high-resolution map</p>
+                  </div>
+                </div>
+                <button type="button" onclick="openRoadmapLightbox('${escapeHtml(data.roadmap.url)}', '${escapeHtml(data.title)} - Road Map')" class="w-full sm:w-auto px-4 py-2 bg-[#FAF8F5] hover:bg-[#141619] hover:text-white border border-[#A8885B] text-[#141619] rounded text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                  <span>View Full Map</span>
+                </button>
+              </div>
+            `;
+          }
+        } else {
           if (roadmapTypeBadge) {
-            roadmapTypeBadge.textContent = 'PDF Master Plan';
-            roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase';
+            roadmapTypeBadge.textContent = 'Available on Request';
+            roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-stone-200 text-stone-700 uppercase';
           }
           roadmapContent.innerHTML = `
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                  PDF
+                <div class="w-10 h-10 rounded bg-[#FAF8F5] text-[#A8885B] border border-[#E7E0D5] flex items-center justify-center flex-shrink-0 font-bold text-base">
+                  🗺️
                 </div>
                 <div>
-                  <h5 class="text-xs sm:text-sm font-bold text-[#141619]">${escapeHtml(data.roadmap.title || 'Official Master Layout & Sector Road Map')}</h5>
-                  <p class="text-[11px] text-[#555E68]">Approved Government / Sector Layout Document</p>
+                  <h5 class="text-xs sm:text-sm font-bold text-[#141619]">Government-Approved Sector Layout</h5>
+                  <p class="text-[11px] text-[#555E68]">Official demarcation & road map available on request</p>
                 </div>
               </div>
-              <div class="flex items-center gap-2 w-full sm:w-auto">
-                <a href="${escapeHtml(data.roadmap.url)}" download="${escapeHtml(data.title.replace(/[^a-zA-Z0-9]/g, '_'))}_RoadMap.pdf" target="_blank" class="w-full sm:w-auto text-center px-4 py-2 bg-[#141619] hover:bg-[#A8885B] text-white rounded text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-sm">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                  <span>Download / View PDF</span>
-                </a>
-              </div>
-            </div>
-          `;
-        } else {
-          // Image Roadmap
-          if (roadmapTypeBadge) {
-            roadmapTypeBadge.textContent = 'High-Res Layout Map';
-            roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase';
-          }
-          roadmapContent.innerHTML = `
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
-              <div class="flex items-center gap-3 cursor-pointer" onclick="openRoadmapLightbox('${escapeHtml(data.roadmap.url)}', '${escapeHtml(data.title)} - Road Map')">
-                <img src="${escapeHtml(data.roadmap.url)}" alt="Road Map Preview" class="w-14 h-14 object-cover rounded border border-stone-300 flex-shrink-0 shadow-sm">
-                <div>
-                  <h5 class="text-xs sm:text-sm font-bold text-[#141619] hover:text-[#A8885B] transition-colors">${escapeHtml(data.roadmap.title || 'Master Sector Road Map & Layout')}</h5>
-                  <p class="text-[11px] text-[#555E68]">Click to expand full high-resolution map</p>
-                </div>
-              </div>
-              <button type="button" onclick="openRoadmapLightbox('${escapeHtml(data.roadmap.url)}', '${escapeHtml(data.title)} - Road Map')" class="w-full sm:w-auto px-4 py-2 bg-[#FAF8F5] hover:bg-[#141619] hover:text-white border border-[#A8885B] text-[#141619] rounded text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
-                <span>View Full Map</span>
+              <button type="button" onclick="openWhatsApp('Hello Khoraniya Prime Properties, please share the official sector road map and layout for ${escapeHtml(data.title)}')" class="w-full sm:w-auto px-4 py-2 bg-[#25D366] text-white rounded text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 shadow-sm">
+                <span>Request Map on WhatsApp</span>
               </button>
             </div>
           `;
         }
-      } else {
-        if (roadmapTypeBadge) {
-          roadmapTypeBadge.textContent = 'Available on Request';
-          roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-stone-200 text-stone-700 uppercase';
-        }
-        roadmapContent.innerHTML = `
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded bg-[#FAF8F5] text-[#A8885B] border border-[#E7E0D5] flex items-center justify-center flex-shrink-0 font-bold text-base">
-                🗺️
-              </div>
-              <div>
-                <h5 class="text-xs sm:text-sm font-bold text-[#141619]">Government-Approved Sector Layout</h5>
-                <p class="text-[11px] text-[#555E68]">Official demarcation & road map available on request</p>
-              </div>
-            </div>
-            <button type="button" onclick="openWhatsApp('Hello Khoraniya Prime Properties, please share the official sector road map and layout for ${escapeHtml(data.title)}')" class="w-full sm:w-auto px-4 py-2 bg-[#25D366] text-white rounded text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 shadow-sm">
-              <span>Request Map on WhatsApp</span>
-            </button>
-          </div>
-        `;
       }
-    }
 
-    // Highlights
-    const highlightsList = document.getElementById('modal-highlights');
-    if (highlightsList) {
-      const hList = data.highlights || [];
-      highlightsList.innerHTML = hList
-        .map(h => `<li class="flex items-start gap-2.5 text-sm text-[#33383F]"><svg class="w-4 h-4 text-[#A8885B] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${escapeHtml(h)}</span></li>`)
-        .join('');
-    }
+      // Highlights
+      const highlightsList = document.getElementById('modal-highlights');
+      if (highlightsList) {
+        const hList = data.highlights || [];
+        highlightsList.innerHTML = hList
+          .map(h => `<li class="flex items-start gap-2.5 text-sm text-[#33383F]"><svg class="w-4 h-4 text-[#A8885B] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${escapeHtml(h)}</span></li>`)
+          .join('');
+      }
 
-    modalBackdrop.classList.add('active');
-    document.body.style.overflow = 'hidden';
+      if (modalBackdrop) {
+        modalBackdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    } catch (err) {
+      console.error('Error opening property modal:', err);
+    }
   };
 
   window.closePropertyModal = function() {
