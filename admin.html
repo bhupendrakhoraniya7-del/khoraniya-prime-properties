@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Admin Portal | Khoraniya Prime Properties</title>
   
   <!-- Favicon -->
@@ -695,8 +698,25 @@
 
     async function saveLocalData() {
       if (!siteData) return;
+      siteData.updatedAt = Date.now();
+
       // 1. Always save full data to IndexedDB (handles multi-megabyte PDFs and galleries without 5MB quota limit)
       await saveToIndexedDB('site_data', siteData);
+
+      // 2. If running on local server, save straight to assets/data/site-data.json on disk!
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        try {
+          fetch('/api/save-site-data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(siteData, null, 2)
+          }).then(r => r.json()).then(res => {
+            console.log('Local disk synced:', res);
+          }).catch(err => {
+            console.warn('Local disk sync error:', err);
+          });
+        } catch (e) {}
+      }
 
       // 2. Safe save to localStorage (with try/catch so quota exceeded never breaks the app)
       try {

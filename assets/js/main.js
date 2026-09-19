@@ -187,13 +187,55 @@ async function loadSiteData() {
       if (raw) cachedData = JSON.parse(raw);
     } catch (e) {}
 
-    // Priority: serverData (if available from GitHub / server), or idbData, or cachedData
-    if (serverData && Array.isArray(serverData.properties) && serverData.properties.length > 0) {
-      window.currentSiteData = serverData;
-    } else if (idbData && Array.isArray(idbData.properties) && idbData.properties.length > 0) {
-      window.currentSiteData = idbData;
-    } else if (cachedData && Array.isArray(cachedData.properties) && cachedData.properties.length > 0) {
-      window.currentSiteData = cachedData;
+    // Combine & Smart Resolve:
+    // If idbData exists and has properties, merge them with serverData!
+    // Any project created by the user (in idbData or serverData) will be included immediately!
+    if (serverData || idbData || cachedData) {
+      const baseContact = idbData?.contact || serverData?.contact || cachedData?.contact || defaultSiteData.contact;
+      const propMap = new Map();
+      
+      // 1. Add server properties
+      if (serverData && Array.isArray(serverData.properties)) {
+        serverData.properties.forEach(p => {
+          if (p && p.id) propMap.set(p.id, p);
+        });
+      }
+      
+      // 2. Add cached properties
+      if (cachedData && Array.isArray(cachedData.properties)) {
+        cachedData.properties.forEach(p => {
+          if (p && p.id && !propMap.has(p.id)) propMap.set(p.id, p);
+        });
+      }
+
+      // 3. Add IDB properties (IDB has user's latest edits on this browser)
+      if (idbData && Array.isArray(idbData.properties)) {
+        const idbTime = Number(idbData.updatedAt || 0);
+        const serverTime = Number(serverData?.updatedAt || 0);
+        
+        if (idbTime > serverTime && idbData.properties.length < propMap.size) {
+          // User explicitly deleted a project in IDB
+          propMap.clear();
+          idbData.properties.forEach(p => { if (p && p.id) propMap.set(p.id, p); });
+        } else {
+          // Merge / update properties with IDB versions
+          idbData.properties.forEach(p => {
+            if (p && p.id) propMap.set(p.id, p);
+          });
+        }
+      }
+
+      const allProps = Array.from(propMap.values());
+
+      if (allProps.length > 0) {
+        window.currentSiteData = {
+          contact: baseContact,
+          properties: allProps,
+          updatedAt: Math.max(Number(serverData?.updatedAt || 0), Number(idbData?.updatedAt || 0))
+        };
+      } else {
+        window.currentSiteData = serverData || idbData || cachedData || defaultSiteData;
+      }
     } else {
       window.currentSiteData = defaultSiteData;
     }
