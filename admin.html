@@ -390,17 +390,98 @@
           </div>
         </div>
 
-        <!-- Image URL with Preset Pickers -->
-        <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Photo Image URL *</label>
-          <input type="url" id="p-image" required placeholder="https://images.unsplash.com/photo-..." class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
-          
-          <div class="flex items-center gap-2 mt-2">
-            <span class="text-[11px] text-[#555E68]">Presets:</span>
-            <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80')" class="text-[11px] px-2 py-0.5 rounded bg-stone-100 hover:bg-stone-200">Modern Commercial</button>
-            <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80')" class="text-[11px] px-2 py-0.5 rounded bg-stone-100 hover:bg-stone-200">Glass Enclave</button>
-            <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80')" class="text-[11px] px-2 py-0.5 rounded bg-stone-100 hover:bg-stone-200">Boulevard Plaza</button>
+        <!-- Project Photo Section -->
+        <div class="space-y-2">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F]">
+            Project Photo * <span class="text-[#88909A] font-normal lowercase">(upload photo, paste image link, or pick preset)</span>
+          </label>
+
+          <!-- Upload Mode Switcher -->
+          <div class="flex items-center gap-2 border-b border-[#E7E0D5] pb-2 text-xs font-medium">
+            <button type="button" onclick="setImageMode('upload')" id="img-tab-upload" class="px-3 py-1.5 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+              <span>Upload from Device</span>
+            </button>
+            <button type="button" onclick="setImageMode('url')" id="img-tab-url" class="px-3 py-1.5 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+              <span>Paste Image Link</span>
+            </button>
+            <button type="button" onclick="setImageMode('preset')" id="img-tab-preset" class="px-3 py-1.5 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span>Presets</span>
+            </button>
           </div>
+
+          <!-- Mode 1: Device File Upload Dropzone -->
+          <div id="img-panel-upload" class="space-y-2">
+            <div 
+              id="dropzone" 
+              onclick="document.getElementById('file-input').click()"
+              class="border-2 border-dashed border-[#C5A880]/60 hover:border-[#A8885B] bg-[#FAF8F5] rounded-xl p-5 text-center cursor-pointer transition-all hover:bg-white flex flex-col items-center justify-center group"
+            >
+              <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+              <div class="w-11 h-11 rounded-full bg-amber-50 group-hover:bg-amber-100 text-[#A8885B] flex items-center justify-center mb-2 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+              </div>
+              <p class="text-xs font-semibold text-[#141619]">Apne phone ya computer se photo chunein</p>
+              <p class="text-[11px] text-[#555E68] mt-0.5">Click karein ya file yahan drag karke drop karein (JPG, PNG, WEBP)</p>
+              <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full mt-2 font-medium">⚡ Automatic smart optimization for ultra-fast loading</span>
+            </div>
+          </div>
+
+          <!-- Mode 2: Direct Image URL -->
+          <div id="img-panel-url" class="hidden space-y-2">
+            <input 
+              type="text" 
+              id="p-image-url-input" 
+              placeholder="https://images.unsplash.com/... ya https://i.ibb.co/..." 
+              class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white"
+              oninput="handleUrlInput(this.value)"
+            >
+            <div class="p-2.5 rounded bg-stone-50 border border-stone-200 text-[11px] text-[#555E68] flex items-center justify-between gap-2">
+              <span>💡 <strong>Free Image Hosting:</strong> Photo ko <a href="https://imgbb.com" target="_blank" class="text-[#A8885B] font-bold underline">ImgBB.com</a> par upload karke direct link yahan daal sakte hain.</span>
+              <a href="https://imgbb.com" target="_blank" class="px-2 py-1 bg-white border rounded text-[10px] font-semibold text-[#141619] hover:bg-stone-100 shrink-0">Open ImgBB ↗</a>
+            </div>
+          </div>
+
+          <!-- Mode 3: Presets -->
+          <div id="img-panel-preset" class="hidden space-y-2">
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80')" class="group p-1.5 rounded border border-stone-200 hover:border-[#A8885B] bg-white text-left transition-all">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=300&q=60" class="w-full h-14 object-cover rounded mb-1">
+                <span class="text-[10px] font-semibold text-[#141619] block group-hover:text-[#A8885B]">Modern Tower</span>
+              </button>
+              <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80')" class="group p-1.5 rounded border border-stone-200 hover:border-[#A8885B] bg-white text-left transition-all">
+                <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=300&q=60" class="w-full h-14 object-cover rounded mb-1">
+                <span class="text-[10px] font-semibold text-[#141619] block group-hover:text-[#A8885B]">Glass Enclave</span>
+              </button>
+              <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80')" class="group p-1.5 rounded border border-stone-200 hover:border-[#A8885B] bg-white text-left transition-all">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=300&q=60" class="w-full h-14 object-cover rounded mb-1">
+                <span class="text-[10px] font-semibold text-[#141619] block group-hover:text-[#A8885B]">Boulevard Plaza</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hidden storage field for submission -->
+          <input type="hidden" id="p-image">
+
+          <!-- Live Image Preview Box -->
+          <div id="image-preview-container" class="hidden mt-2 p-3 bg-white rounded-lg border border-[#E7E0D5] flex items-center justify-between gap-3 shadow-sm">
+            <div class="flex items-center gap-3 min-w-0">
+              <img id="image-preview-thumb" src="" alt="Preview" class="w-16 h-12 object-cover rounded border border-stone-200 shrink-0">
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span class="text-xs font-semibold text-[#141619]">Photo Selected</span>
+                </div>
+                <p id="image-preview-meta" class="text-[11px] text-[#555E68] truncate">Ready to display on website</p>
+              </div>
+            </div>
+            <button type="button" onclick="clearImage()" class="text-xs text-red-600 hover:text-red-800 font-semibold px-2.5 py-1 rounded hover:bg-red-50 shrink-0">
+              Remove
+            </button>
+          </div>
+          <p id="image-error-msg" class="text-xs text-red-600 hidden font-medium">Please select or upload a project photo.</p>
         </div>
 
         <div>
@@ -443,6 +524,7 @@
       renderAdminProjects();
       populateContactForm();
       loadSavedToken();
+      initDropzone();
     });
 
     // --------------------------------------------------------------------------
@@ -584,11 +666,152 @@
       `).join('');
     }
 
+    // --------------------------------------------------------------------------
+    // PHOTO UPLOAD, DRAG & DROP AND COMPRESSION LOGIC
+    // --------------------------------------------------------------------------
+    function initDropzone() {
+      const dropzone = document.getElementById('dropzone');
+      if (!dropzone) return;
+
+      ['dragenter', 'dragover'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzone.classList.add('border-[#A8885B]', 'bg-amber-50/50');
+        });
+      });
+      ['dragleave', 'drop'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('border-[#A8885B]', 'bg-amber-50/50');
+        });
+      });
+      dropzone.addEventListener('drop', (e) => {
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          processImageFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    function setImageMode(mode) {
+      document.getElementById('img-panel-upload').classList.toggle('hidden', mode !== 'upload');
+      document.getElementById('img-panel-url').classList.toggle('hidden', mode !== 'url');
+      document.getElementById('img-panel-preset').classList.toggle('hidden', mode !== 'preset');
+
+      const btnUpload = document.getElementById('img-tab-upload');
+      const btnUrl = document.getElementById('img-tab-url');
+      const btnPreset = document.getElementById('img-tab-preset');
+
+      [btnUpload, btnUrl, btnPreset].forEach(b => {
+        b.className = 'px-3 py-1.5 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5 transition-colors';
+      });
+
+      const activeBtn = mode === 'upload' ? btnUpload : mode === 'url' ? btnUrl : btnPreset;
+      activeBtn.className = 'px-3 py-1.5 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5 transition-colors';
+    }
+
+    function handleFileSelect(e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) processImageFile(file);
+    }
+
+    function processImageFile(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, or WEBP).');
+        return;
+      }
+
+      showToast('Optimizing photo for web display...');
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          // Responsive bounds (1200x800 maximum)
+          const MAX_WIDTH = 1200;
+          const MAX_HEIGHT = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width);
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width = Math.round((width * MAX_HEIGHT) / height);
+              height = MAX_HEIGHT;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Highly optimized JPEG at 82% quality
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          const approxKb = Math.round((compressedDataUrl.length * 0.75) / 1024);
+
+          setImageValue(compressedDataUrl, `${file.name} (${width}×${height}px • ${approxKb} KB)`);
+          showToast(`Photo optimized successfully (${approxKb} KB)!`);
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function setImageValue(val, meta = 'Ready for display') {
+      document.getElementById('p-image').value = val;
+      const isData = val.startsWith('data:');
+      document.getElementById('p-image-url-input').value = isData ? '' : val;
+
+      const preview = document.getElementById('image-preview-container');
+      const thumb = document.getElementById('image-preview-thumb');
+      const metaEl = document.getElementById('image-preview-meta');
+      const errEl = document.getElementById('image-error-msg');
+
+      if (val) {
+        thumb.src = val;
+        metaEl.textContent = meta;
+        preview.classList.remove('hidden');
+        if (errEl) errEl.classList.add('hidden');
+      } else {
+        preview.classList.add('hidden');
+      }
+    }
+
+    function clearImage() {
+      document.getElementById('p-image').value = '';
+      document.getElementById('p-image-url-input').value = '';
+      const fileInput = document.getElementById('file-input');
+      if (fileInput) fileInput.value = '';
+      document.getElementById('image-preview-container').classList.add('hidden');
+    }
+
+    function handleUrlInput(url) {
+      const clean = url.trim();
+      if (clean) {
+        setImageValue(clean, 'External Image Link');
+      } else {
+        clearImage();
+      }
+    }
+
+    function setPresetImg(url) {
+      setImageValue(url, 'Selected Luxury Architectural Preset');
+      setImageMode('preset');
+      showToast('Preset photo selected!');
+    }
+
     // Open Modal for Add
     function openAddProjectModal() {
       document.getElementById('modal-project-heading').textContent = 'Add New Project / Plot';
       document.getElementById('p-id').value = '';
       document.getElementById('project-form').reset();
+      clearImage();
+      setImageMode('upload');
       document.getElementById('project-modal').classList.add('active');
     }
 
@@ -607,19 +830,26 @@
       document.getElementById('p-frontage').value = prop.frontage || '';
       document.getElementById('p-zoning').value = prop.zoning || '';
       document.getElementById('p-possession').value = prop.possession || '';
-      document.getElementById('p-image').value = prop.image || '';
       document.getElementById('p-desc').value = prop.description || '';
       document.getElementById('p-highlights').value = (prop.highlights || []).join('\n');
+
+      if (prop.image) {
+        setImageValue(prop.image, 'Current Project Photo');
+        if (prop.image.startsWith('data:')) {
+          setImageMode('upload');
+        } else {
+          setImageMode('url');
+        }
+      } else {
+        clearImage();
+        setImageMode('upload');
+      }
 
       document.getElementById('project-modal').classList.add('active');
     }
 
     function closeProjectModal() {
       document.getElementById('project-modal').classList.remove('active');
-    }
-
-    function setPresetImg(url) {
-      document.getElementById('p-image').value = url;
     }
 
     // Save Project (Add or Edit)
@@ -638,6 +868,12 @@
       const image = document.getElementById('p-image').value.trim();
       const description = document.getElementById('p-desc').value.trim();
       const highlightsText = document.getElementById('p-highlights').value.trim();
+
+      if (!image) {
+        document.getElementById('image-error-msg').classList.remove('hidden');
+        alert('Please upload or select a photo for this project.');
+        return;
+      }
 
       const highlights = highlightsText ? highlightsText.split('\n').map(h => h.trim()).filter(Boolean) : [];
 
