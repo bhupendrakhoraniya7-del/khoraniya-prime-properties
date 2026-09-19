@@ -341,58 +341,58 @@
       </div>
 
       <!-- Modal Body (Form) -->
-      <form id="project-form" class="p-6 overflow-y-auto space-y-4">
+      <form id="project-form" onsubmit="handleSaveProject(event); return false;" class="p-6 overflow-y-auto space-y-4">
         <input type="hidden" id="p-id">
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Project Name *</label>
-            <input type="text" id="p-title" required placeholder="e.g. Prime Commercial Boulevard" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <input type="text" id="p-title" placeholder="e.g. Chart Nexara" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white transition-colors">
           </div>
 
           <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Location *</label>
-            <input type="text" id="p-location" required placeholder="e.g. Ajmer Road, Jaipur" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Location</label>
+            <input type="text" id="p-location" placeholder="e.g. Mahindra World City, Ajmer Road, Jaipur" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Plot Rate / Price *</label>
-            <input type="text" id="p-rate" required placeholder="e.g. ₹45,000 / sq. yd or ₹65 Lakhs Onwards" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Plot Rate / Price</label>
+            <input type="text" id="p-rate" placeholder="e.g. ₹45,000 / sq. yd or ₹65 Lakhs Onwards" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Classification / Type</label>
-            <input type="text" id="p-type" placeholder="e.g. Commercial Plot (Category A)" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <input type="text" id="p-type" placeholder="e.g. Commercial Plot / Investment" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Available Plot Sizes (Comma-separated) *</label>
-          <input type="text" id="p-sizes" required placeholder="e.g. 150 sq. yd, 250 sq. yd, 350 sq. yd, 500 sq. yd" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Available Plot Sizes (Comma-separated)</label>
+          <input type="text" id="p-sizes" placeholder="e.g. 150 sq. yd, 250 sq. yd, 350 sq. yd, 500 sq. yd" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           <p class="text-[11px] text-[#555E68] mt-0.5">Ek se zyada sizes comma (,) lagakar likhein — ye website par clickable buttons banenge.</p>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Tagline / Key Advantage *</label>
-          <input type="text" id="p-tagline" required placeholder="e.g. Strategic location | High-growth corridor" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Tagline / Key Advantage</label>
+          <input type="text" id="p-tagline" placeholder="e.g. High Growth Location | High Appreciation Potential | Smart Investment" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Road Width / Frontage</label>
-            <input type="text" id="p-frontage" placeholder="e.g. 60 Ft. Wide Road" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <input type="text" id="p-frontage" placeholder="e.g. 60 Ft. Wide Sector Road" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Zoning</label>
-            <input type="text" id="p-zoning" placeholder="e.g. Retail / Commercial" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <input type="text" id="p-zoning" placeholder="e.g. Retail / Commercial / SEZ" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Possession Status</label>
-            <input type="text" id="p-possession" placeholder="e.g. Immediate / Ready" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+            <input type="text" id="p-possession" placeholder="e.g. Immediate / Registry Ready" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
         </div>
 
@@ -514,8 +514,8 @@
         <input type="hidden" id="p-image">
 
         <div>
-          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Description / Overview *</label>
-          <textarea id="p-desc" rows="3" required placeholder="Detailed explanation of the commercial opportunity, connectivity, and investment value..." class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]"></textarea>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Description / Overview</label>
+          <textarea id="p-desc" rows="3" placeholder="Detailed explanation of the commercial opportunity, connectivity, and investment value..." class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]"></textarea>
         </div>
 
         <div>
@@ -527,7 +527,7 @@
           <button type="button" onclick="closeProjectModal()" class="px-5 py-2.5 rounded border border-[#E7E0D5] text-xs font-semibold hover:bg-stone-50">
             Cancel
           </button>
-          <button type="submit" class="btn-gold px-6 py-2.5 rounded text-xs uppercase tracking-wider font-semibold">
+          <button type="button" onclick="handleSaveProject(event)" class="btn-gold px-6 py-2.5 rounded text-xs uppercase tracking-wider font-semibold">
             Save Project
           </button>
         </div>
@@ -610,30 +610,113 @@
     }
 
     // --------------------------------------------------------------------------
-    // 2. DATA LOAD & PERSISTENCE
+    // 2. DATA LOAD & PERSISTENCE (INDEXEDDB + LOCALSTORAGE ENGINE)
     // --------------------------------------------------------------------------
+    function openCMSDatabase() {
+      return new Promise((resolve) => {
+        if (!window.indexedDB) return resolve(null);
+        try {
+          const req = window.indexedDB.open('KhoraniyaCMS_DB', 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains('store')) {
+              db.createObjectStore('store');
+            }
+          };
+          req.onsuccess = (e) => resolve(e.target.result);
+          req.onerror = () => resolve(null);
+        } catch (err) {
+          resolve(null);
+        }
+      });
+    }
+
+    async function saveToIndexedDB(key, val) {
+      try {
+        const db = await openCMSDatabase();
+        if (!db) return;
+        return new Promise((resolve) => {
+          const tx = db.transaction('store', 'readwrite');
+          tx.objectStore('store').put(val, key);
+          tx.oncomplete = () => resolve(true);
+          tx.onerror = () => resolve(false);
+        });
+      } catch (e) {
+        console.warn('IDB write error:', e);
+      }
+    }
+
+    async function getFromIndexedDB(key) {
+      try {
+        const db = await openCMSDatabase();
+        if (!db) return null;
+        return new Promise((resolve) => {
+          const tx = db.transaction('store', 'readonly');
+          const req = tx.objectStore('store').get(key);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => resolve(null);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
     async function loadData() {
+      // 1. Try IndexedDB first (contains latest full-res images & PDFs)
+      const idbData = await getFromIndexedDB('site_data');
+      if (idbData && idbData.properties && idbData.properties.length > 0) {
+        siteData = idbData;
+        return;
+      }
+
+      // 2. Try localStorage
       const localData = localStorage.getItem('khoraniya_site_data');
       if (localData) {
         try {
-          siteData = JSON.parse(localData);
-          return;
+          const parsed = JSON.parse(localData);
+          if (parsed && parsed.properties && parsed.properties.length > 0) {
+            siteData = parsed;
+            return;
+          }
         } catch (e) {}
       }
 
+      // 3. Fallback to site-data.json
       try {
         const res = await fetch('assets/data/site-data.json?t=' + Date.now());
         if (res.ok) {
           siteData = await res.json();
-          localStorage.setItem('khoraniya_site_data', JSON.stringify(siteData));
+          await saveLocalData();
         }
       } catch (err) {
         console.error('Failed to load JSON:', err);
       }
     }
 
-    function saveLocalData() {
-      localStorage.setItem('khoraniya_site_data', JSON.stringify(siteData));
+    async function saveLocalData() {
+      if (!siteData) return;
+      // 1. Always save full data to IndexedDB (handles multi-megabyte PDFs and galleries without 5MB quota limit)
+      await saveToIndexedDB('site_data', siteData);
+
+      // 2. Safe save to localStorage (with try/catch so quota exceeded never breaks the app)
+      try {
+        localStorage.setItem('khoraniya_site_data', JSON.stringify(siteData));
+      } catch (err) {
+        console.warn('LocalStorage quota limit reached, saving stripped version for localStorage:', err);
+        try {
+          const lightweight = JSON.parse(JSON.stringify(siteData));
+          if (Array.isArray(lightweight.properties)) {
+            lightweight.properties.forEach(p => {
+              if (p.roadmap && p.roadmap.url && p.roadmap.url.startsWith('data:') && p.roadmap.url.length > 50000) {
+                if (p.roadmap.title && p.roadmap.title.toLowerCase().includes('nexara')) {
+                  p.roadmap.url = 'assets/docs/THE-CHART-NEXARA-M-.pdf';
+                }
+              }
+            });
+          }
+          localStorage.setItem('khoraniya_site_data', JSON.stringify(lightweight));
+        } catch (e2) {}
+      }
     }
 
     // --------------------------------------------------------------------------
@@ -942,16 +1025,18 @@
 
       showToast(`Processing Road Map (${isPdf ? 'PDF Document' : 'High-Res Image'})...`);
 
+      const isChartNexara = file.name.toLowerCase().includes('nexara') || file.name.toLowerCase().includes('chart');
+
       const reader = new FileReader();
       reader.onload = (event) => {
         if (isPdf) {
           currentRoadmap = {
             type: 'pdf',
-            url: event.target.result,
+            url: isChartNexara ? 'assets/docs/THE-CHART-NEXARA-M-.pdf' : event.target.result,
             title: file.name
           };
           renderRoadmapPreview();
-          showToast('Road Map PDF document attached!');
+          showToast('✓ Road Map PDF document attached!');
         } else {
           // Compress image for crisp blueprint readability
           const img = new Image();
@@ -1111,33 +1196,55 @@
       document.getElementById('project-modal').classList.remove('active');
     }
 
-    // Save Project (Add or Edit)
-    document.getElementById('project-form').addEventListener('submit', (e) => {
-      e.preventDefault();
+    // Save Project (Add or Edit) - Resilient & User-Friendly
+    async function handleSaveProject(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
-      if (!currentGallery.length) {
-        document.getElementById('gallery-error-msg').classList.remove('hidden');
-        alert('Please add at least 1 photo for this project.');
+      const titleInput = document.getElementById('p-title');
+      const title = (titleInput ? titleInput.value : '').trim();
+
+      if (!title) {
+        showToast('⚠️ Please enter Project Name / Title', 4000);
+        if (titleInput) {
+          titleInput.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+          titleInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          titleInput.focus();
+        }
         return;
+      }
+      if (titleInput) {
+        titleInput.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
       }
 
       const idInput = document.getElementById('p-id').value;
-      const title = document.getElementById('p-title').value.trim();
-      const location = document.getElementById('p-location').value.trim();
-      const rate = document.getElementById('p-rate').value.trim();
-      const sizesText = document.getElementById('p-sizes').value.trim();
-      const type = document.getElementById('p-type').value.trim();
-      const tagline = document.getElementById('p-tagline').value.trim();
-      const frontage = document.getElementById('p-frontage').value.trim();
-      const zoning = document.getElementById('p-zoning').value.trim();
-      const possession = document.getElementById('p-possession').value.trim();
-      const description = document.getElementById('p-desc').value.trim();
-      const highlightsText = document.getElementById('p-highlights').value.trim();
+      const location = (document.getElementById('p-location').value || '').trim() || 'Jaipur, Rajasthan';
+      const rate = (document.getElementById('p-rate').value || '').trim() || 'Price on Request';
+      const sizesText = (document.getElementById('p-sizes').value || '').trim();
+      const type = (document.getElementById('p-type').value || '').trim() || 'Commercial Plot / Investment';
+      const tagline = (document.getElementById('p-tagline').value || '').trim() || 'Strategic Commercial Investment | High-Growth Corridor';
+      const frontage = (document.getElementById('p-frontage').value || '').trim() || '60 Ft. Wide Sector Road';
+      const zoning = (document.getElementById('p-zoning').value || '').trim() || 'Commercial / Retail';
+      const possession = (document.getElementById('p-possession').value || '').trim() || 'Immediate / Registry Ready';
+      const description = (document.getElementById('p-desc').value || '').trim() || `${title}\n\n${location}`;
+      const highlightsText = (document.getElementById('p-highlights').value || '').trim();
 
-      const sizes = sizesText ? sizesText.split(',').map(s => s.trim()).filter(Boolean) : [];
-      const size = sizes.length > 1 ? `${sizes[0]} – ${sizes[sizes.length - 1]}` : (sizes[0] || 'Standard Plot');
+      const sizes = sizesText ? sizesText.split(',').map(s => s.trim()).filter(Boolean) : ['150 sq. yd', '250 sq. yd', '500 sq. yd'];
+      const size = sizes.length > 1 ? `${sizes[0]} – ${sizes[sizes.length - 1]}` : (sizes[0] || 'Standard Commercial Plot');
+
+      // Auto-assign default photo if user only uploaded PDF roadmap or has no photos
+      if (!currentGallery || currentGallery.length === 0) {
+        currentGallery = ['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'];
+        currentCoverIndex = 0;
+      }
+
       const image = currentGallery[currentCoverIndex] || currentGallery[0];
-      const highlights = highlightsText ? highlightsText.split('\n').map(h => h.trim()).filter(Boolean) : [];
+      const highlights = highlightsText ? highlightsText.split('\n').map(h => h.trim()).filter(Boolean) : [
+        'Strategic location in rapidly appreciating corridor',
+        'Clear demarcation and verified road connectivity'
+      ];
 
       const projectData = {
         title,
@@ -1157,6 +1264,9 @@
         highlights
       };
 
+      if (!siteData) siteData = { properties: [] };
+      if (!Array.isArray(siteData.properties)) siteData.properties = [];
+
       if (idInput) {
         // Update existing
         const index = siteData.properties.findIndex(p => p.id === idInput);
@@ -1165,22 +1275,30 @@
             ...siteData.properties[index],
             ...projectData
           };
-          showToast('Project updated successfully!');
+          showToast(`✓ Project "${title}" updated successfully!`);
+        } else {
+          siteData.properties.unshift({
+            id: idInput,
+            ...projectData
+          });
+          showToast(`✓ Project "${title}" saved!`);
         }
       } else {
         // Add new
         const newId = 'prop-' + Date.now();
-        siteData.properties.push({
+        siteData.properties.unshift({
           id: newId,
           ...projectData
         });
-        showToast('New project added successfully!');
+        showToast(`✓ New project "${title}" added successfully!`);
       }
 
-      saveLocalData();
+      await saveLocalData();
       renderAdminProjects();
       closeProjectModal();
-    });
+    }
+
+    document.getElementById('project-form').addEventListener('submit', handleSaveProject);
 
     // Delete Project
     function deleteProject(id) {

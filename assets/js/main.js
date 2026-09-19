@@ -15,15 +15,15 @@ const defaultSiteData = {
   properties: [
     {
       id: "prop-1",
-      title: "Prime Commercial Avenue",
-      location: "Ajmer Road Expressway, Jaipur",
-      tagline: "Strategic location | High-growth corridor",
+      title: "Chart Nexara",
+      location: "Mahindra World City, Ajmer Road, Jaipur",
+      tagline: "High Growth Location | High Appreciation Potential | Smart Investment",
       rate: "₹45,000 / sq. yd",
       size: "150 – 500 sq. yd",
       sizes: ["150 sq. yd", "250 sq. yd", "350 sq. yd", "500 sq. yd"],
-      type: "Commercial Plot (Category A)",
-      frontage: "60 Ft. Wide Sector Road",
-      zoning: "Commercial / Retail / Corporate Showroom",
+      type: "Commercial Plot / Investment",
+      frontage: "60 Ft. Wide Sector Road Frontage",
+      zoning: "Commercial / Retail / Industrial SEZ Corridor",
       possession: "Immediate / Registry Ready",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
       gallery: [
@@ -33,16 +33,16 @@ const defaultSiteData = {
         "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
       ],
       roadmap: {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
-        title: "Master Layout & 60 Ft. Road Connectivity Map"
+        type: "pdf",
+        url: "assets/docs/THE-CHART-NEXARA-M-.pdf",
+        title: "THE CHART NEXARA-M-.pdf"
       },
-      description: "Positioned on a premier commercial arterial road in Jaipur, this project delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail, automotive showrooms, or boutique corporate centers.",
+      description: "CHART NEXARA\n\nMahindra World City, Jaipur",
       highlights: [
-        "60-foot wide road frontage ensuring prominent brand visibility",
-        "Situated in a rapidly appreciating commercial development corridor",
-        "Clear demarcation with verified surrounding infrastructure",
-        "Multiple plot sizes suitable for retail complexes or flagship showrooms"
+        "📈 High Growth Location | High Appreciation Potential | Smart Investment",
+        "Mahindra World City, Ajmer road , Jaipur",
+        "Official Demarcation & Sector Road Layout Plan Attached (PDF)",
+        "Prime Location in Rapidly Appreciating Commercial & Industrial SEZ Corridor"
       ]
     },
     {
