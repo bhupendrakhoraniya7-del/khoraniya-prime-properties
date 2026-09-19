@@ -166,27 +166,36 @@ async function getFromIndexedDB(key) {
  */
 async function loadSiteData() {
   try {
-    // 1. Check IndexedDB first (contains latest user CMS updates)
-    const idbData = await getFromIndexedDB('site_data');
-    if (idbData && Array.isArray(idbData.properties) && idbData.properties.length > 0) {
-      window.currentSiteData = idbData;
-    } else {
-      // 2. Check localStorage
-      const cachedData = localStorage.getItem('khoraniya_site_data');
-      if (cachedData) {
-        try {
-          const parsed = JSON.parse(cachedData);
-          if (parsed && Array.isArray(parsed.properties) && parsed.properties.length > 0) {
-            window.currentSiteData = parsed;
-          }
-        } catch (e) {}
-      } else {
-        // 3. Fetch from assets/data/site-data.json
-        const response = await fetch('assets/data/site-data.json?t=' + Date.now());
-        if (response.ok) {
-          window.currentSiteData = await response.json();
-        }
+    // 1. Fetch official site-data.json from server
+    let serverData = null;
+    try {
+      const response = await fetch('assets/data/site-data.json?t=' + Date.now());
+      if (response.ok) {
+        serverData = await response.json();
       }
+    } catch (e) {
+      console.warn('Could not fetch server site-data.json:', e);
+    }
+
+    // 2. Check IndexedDB (for local unpublished edits in Admin Panel)
+    const idbData = await getFromIndexedDB('site_data');
+
+    // 3. Check localStorage
+    let cachedData = null;
+    try {
+      const raw = localStorage.getItem('khoraniya_site_data');
+      if (raw) cachedData = JSON.parse(raw);
+    } catch (e) {}
+
+    // Priority: serverData (if available from GitHub / server), or idbData, or cachedData
+    if (serverData && Array.isArray(serverData.properties) && serverData.properties.length > 0) {
+      window.currentSiteData = serverData;
+    } else if (idbData && Array.isArray(idbData.properties) && idbData.properties.length > 0) {
+      window.currentSiteData = idbData;
+    } else if (cachedData && Array.isArray(cachedData.properties) && cachedData.properties.length > 0) {
+      window.currentSiteData = cachedData;
+    } else {
+      window.currentSiteData = defaultSiteData;
     }
   } catch (err) {
     console.warn('Loading bundled default fallback data:', err);
@@ -504,13 +513,21 @@ function initPropertyModal() {
     try {
       let data = propertyLookup[id];
       if (!data && window.currentSiteData && Array.isArray(window.currentSiteData.properties)) {
-        data = window.currentSiteData.properties.find(p => p.id === id || p.title === id);
+        data = window.currentSiteData.properties.find(p => 
+          p.id === id || 
+          p.title === id || 
+          (p.title && id && p.title.toLowerCase() === id.toLowerCase()) ||
+          (p.title && id && (p.title.toLowerCase().includes(id.toLowerCase()) || id.toLowerCase().includes(p.title.toLowerCase())))
+        );
+      }
+      if (!data && window.currentSiteData && Array.isArray(window.currentSiteData.properties) && window.currentSiteData.properties.length > 0) {
+        data = window.currentSiteData.properties[0];
       }
       if (!data) {
         console.warn('Property not found for ID:', id);
         return;
       }
-      currentPropId = id;
+      currentPropId = data.id || id;
 
       const safeSetText = (elemId, text) => {
         const el = document.getElementById(elemId);
