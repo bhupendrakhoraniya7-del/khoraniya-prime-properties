@@ -1,75 +1,234 @@
-﻿/**
- * Khoraniya Prime Properties - Interactive Frontend Script
+/**
+ * Khoraniya Prime Properties - Interactive Frontend Script & CMS Data Binding
  */
 
-// Property Database for Interactive Modal
-const propertyData = {
-  'prop-1': {
-    title: 'Prime Commercial Avenue',
-    location: 'Jaipur, Rajasthan',
-    tagline: 'Strategic location | High-growth corridor',
-    size: '2,000 sq. ft.',
-    type: 'Commercial Plot (Category A)',
-    frontage: '60 Ft. Wide Sector Road',
-    zoning: 'Commercial / Retail / Office Space',
-    possession: 'Immediate / Investment Ready',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-    description: 'Positioned on a premier commercial arterial road in Jaipur, this 2,000 sq. ft. plot delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail or commercial ventures.',
-    highlights: [
-      '60-foot wide road frontage ensuring prominent brand visibility',
-      'Situated in a rapidly appreciating commercial development corridor',
-      'Clear demarcation with verified surrounding infrastructure',
-      'Ideal for multi-story boutique commercial complexes or retail outlets'
-    ]
+// Fallback Default Data in case fetch is blocked (e.g. local file:// protocol)
+const defaultSiteData = {
+  contact: {
+    phone: "+91 98765 XXXXX",
+    rawPhone: "+919876543210",
+    whatsapp: "919876543210",
+    email: "enquiry@khoraniyaprime.com",
+    address: "Civil Lines / C-Scheme, Jaipur, Rajasthan 302001",
+    tagline: "Invest. Own. Prosper."
   },
-  'prop-2': {
-    title: 'Prime Business District',
-    location: 'Jaipur, Rajasthan',
-    tagline: 'Excellent connectivity | Investment potential',
-    size: '3,500 sq. ft.',
-    type: 'Commercial Plot (High-Density)',
-    frontage: '80 Ft. Master Plan Arterial',
-    zoning: 'Corporate & Mixed Commercial Use',
-    possession: 'Ready for Development',
-    image: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
-    description: 'A prestigious commercial plot located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and high rental yield prospects for commercial developers.',
-    highlights: [
-      'Proximity to major ring corridors and established corporate nodes',
-      'Dual-side accessibility supporting efficient logistics and customer parking',
-      'High anticipated appreciation index backed by municipal infrastructure',
-      'Zoned for corporate offices, diagnostic centers, or hospitality ventures'
-    ]
-  },
-  'prop-3': {
-    title: 'Prime Investment Enclave',
-    location: 'Jaipur, Rajasthan',
-    tagline: 'Growth-focused location | Commercial potential',
-    size: '5,000 sq. ft.',
-    type: 'Commercial Plot (Flagship Scale)',
-    frontage: '100 Ft. Main Growth Corridor',
-    zoning: 'Anchor Commercial / Showroom / Institution',
-    possession: 'Strategic Investment Holding',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-    description: 'An expansive 5,000 sq. ft. prime plot tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.',
-    highlights: [
-      'Generous 100-foot frontage allowing magnificent architectural elevation',
-      'Exceptional transit linkages connecting the airport and regional expressways',
-      'Surrounded by premium upcoming residential catchments driving local commerce',
-      'Unmatched land asset for legacy investors and high-net-worth portfolios'
-    ]
-  }
+  properties: [
+    {
+      id: "prop-1",
+      title: "Prime Commercial Avenue",
+      location: "Jaipur, Rajasthan",
+      tagline: "Strategic location | High-growth corridor",
+      size: "2,000 sq. ft.",
+      type: "Commercial Plot (Category A)",
+      frontage: "60 Ft. Wide Sector Road",
+      zoning: "Commercial / Retail / Office Space",
+      possession: "Immediate / Investment Ready",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      description: "Positioned on a premier commercial arterial road in Jaipur, this 2,000 sq. ft. plot delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail or commercial ventures.",
+      highlights: [
+        "60-foot wide road frontage ensuring prominent brand visibility",
+        "Situated in a rapidly appreciating commercial development corridor",
+        "Clear demarcation with verified surrounding infrastructure",
+        "Ideal for multi-story boutique commercial complexes or retail outlets"
+      ]
+    },
+    {
+      id: "prop-2",
+      title: "Prime Business District",
+      location: "Jaipur, Rajasthan",
+      tagline: "Excellent connectivity | Investment potential",
+      size: "3,500 sq. ft.",
+      type: "Commercial Plot (High-Density)",
+      frontage: "80 Ft. Master Plan Arterial",
+      zoning: "Corporate & Mixed Commercial Use",
+      possession: "Ready for Development",
+      image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+      description: "A prestigious commercial plot located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and high rental yield prospects for commercial developers.",
+      highlights: [
+        "Proximity to major ring corridors and established corporate nodes",
+        "Dual-side accessibility supporting efficient logistics and customer parking",
+        "High anticipated appreciation index backed by municipal infrastructure",
+        "Zoned for corporate offices, diagnostic centers, or hospitality ventures"
+      ]
+    },
+    {
+      id: "prop-3",
+      title: "Prime Investment Enclave",
+      location: "Jaipur, Rajasthan",
+      tagline: "Growth-focused location | Commercial potential",
+      size: "5,000 sq. ft.",
+      type: "Commercial Plot (Flagship Scale)",
+      frontage: "100 Ft. Main Growth Corridor",
+      zoning: "Anchor Commercial / Showroom / Institution",
+      possession: "Strategic Investment Holding",
+      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      description: "An expansive 5,000 sq. ft. prime plot tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.",
+      highlights: [
+        "Generous 100-foot frontage allowing magnificent architectural elevation",
+        "Exceptional transit linkages connecting the airport and regional expressways",
+        "Surrounded by premium upcoming residential catchments driving local commerce",
+        "Unmatched land asset for legacy investors and high-net-worth portfolios"
+      ]
+    }
+  ]
 };
 
-// Global WhatsApp Number Placeholder (Easily replaceable)
-const WHATSAPP_PHONE = '919876543210'; // Replace with real 10-digit number including country code (91 for India)
+// Global State
+window.currentSiteData = defaultSiteData;
+let propertyLookup = {};
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadSiteData();
+  renderProperties();
+  bindContactInfo();
   initNavigation();
   initPropertyModal();
   initAccordions();
   initLeadForm();
   initMobileActionBar();
 });
+
+/**
+ * Load Data from LocalStorage, JSON file, or Default Fallback
+ */
+async function loadSiteData() {
+  try {
+    // 1. Check if admin saved local preview data in localStorage
+    const cachedData = localStorage.getItem('khoraniya_site_data');
+    if (cachedData) {
+      window.currentSiteData = JSON.parse(cachedData);
+    } else {
+      // 2. Fetch from assets/data/site-data.json
+      const response = await fetch('assets/data/site-data.json?t=' + Date.now());
+      if (response.ok) {
+        window.currentSiteData = await response.json();
+      }
+    }
+  } catch (err) {
+    console.warn('Loading bundled default fallback data:', err);
+    window.currentSiteData = defaultSiteData;
+  }
+
+  // Build ID lookup dictionary for fast modal access
+  propertyLookup = {};
+  if (window.currentSiteData.properties) {
+    window.currentSiteData.properties.forEach(p => {
+      propertyLookup[p.id] = p;
+    });
+  }
+}
+
+/**
+ * Dynamically Render Property Cards into #properties-grid
+ */
+function renderProperties() {
+  const grid = document.getElementById('properties-grid');
+  if (!grid || !window.currentSiteData.properties) return;
+
+  const props = window.currentSiteData.properties;
+  grid.innerHTML = props.map(prop => `
+    <div class="property-card bg-white rounded-lg overflow-hidden flex flex-col justify-between">
+      <div>
+        <div class="relative h-60 overflow-hidden bg-stone-100">
+          <img 
+            src="${escapeHtml(prop.image)}" 
+            alt="${escapeHtml(prop.title)} - Commercial Plot in Jaipur" 
+            class="property-img w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'"
+          >
+          <div class="absolute top-3 left-3 bg-[#141619]/90 text-[#D5BA8E] text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded backdrop-blur-sm">
+            ${escapeHtml(prop.type || 'Commercial Plot')}
+          </div>
+          <div class="absolute bottom-3 right-3 bg-white/95 text-[#141619] text-xs font-bold px-3 py-1 rounded shadow-sm">
+            ${escapeHtml(prop.size || '')}
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="flex items-center gap-1.5 text-xs text-[#555E68] mb-1.5">
+            <svg class="w-3.5 h-3.5 text-[#A8885B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            </svg>
+            <span>${escapeHtml(prop.location || 'Jaipur, Rajasthan')}</span>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-[#141619] mb-2">${escapeHtml(prop.title)}</h3>
+          <p class="text-xs text-[#A8885B] font-semibold uppercase tracking-wider mb-4">
+            ${escapeHtml(prop.tagline || 'Strategic Commercial Investment')}
+          </p>
+          <p class="text-xs sm:text-[13px] text-[#555E68] line-clamp-2 leading-relaxed">
+            ${escapeHtml(prop.description || '')}
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 pt-0 border-t border-[#E7E0D5]/60 mt-4 flex items-center justify-between">
+        <span class="text-[11px] uppercase tracking-wider text-[#555E68]">Plot Spec: Available</span>
+        <button onclick="openPropertyModal('${escapeHtml(prop.id)}')" class="btn-outline-gold px-4 py-2 rounded text-xs uppercase tracking-wider font-semibold">
+          View Details
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  // Also update property options in lead capture dropdown
+  const select = document.getElementById('form-property');
+  if (select) {
+    const defaultOption = '<option value="">Select Category / Plot</option>';
+    const options = props.map(p => `<option value="${escapeHtml(p.title)}">${escapeHtml(p.title)} (${escapeHtml(p.size)})</option>`).join('');
+    const additionalOptions = `
+      <option value="Commercial Land Banking">Long-Term Commercial Land Banking</option>
+      <option value="Retail Showroom Plot">Retail / Showroom Plot</option>
+      <option value="Other Commercial">Other Commercial Requirement</option>
+    `;
+    select.innerHTML = defaultOption + options + additionalOptions;
+  }
+}
+
+/**
+ * Bind Contact Info Dynamically Across Website
+ */
+function bindContactInfo() {
+  const contact = window.currentSiteData.contact || defaultSiteData.contact;
+
+  // Phone
+  document.querySelectorAll('[data-bind="phone"]').forEach(el => {
+    el.textContent = contact.phone || '+91 98765 XXXXX';
+  });
+
+  // Raw Phone / Call links
+  document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+    el.href = `tel:${contact.rawPhone || '+919876543210'}`;
+  });
+
+  // Email
+  document.querySelectorAll('[data-bind="email"]').forEach(el => {
+    el.textContent = contact.email || 'enquiry@khoraniyaprime.com';
+  });
+
+  // Address
+  document.querySelectorAll('[data-bind="address"]').forEach(el => {
+    el.textContent = contact.address || 'Civil Lines / C-Scheme, Jaipur, Rajasthan 302001';
+  });
+
+  // Tagline
+  document.querySelectorAll('[data-bind="tagline"]').forEach(el => {
+    el.textContent = contact.tagline || 'Invest. Own. Prosper.';
+  });
+}
+
+/**
+ * Helper to escape HTML and prevent XSS
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 /* --------------------------------------------------------------------------
    1. NAVIGATION & SCROLL
@@ -141,25 +300,26 @@ function initPropertyModal() {
   let currentPropId = null;
 
   window.openPropertyModal = function(id) {
-    const data = propertyData[id];
+    const data = propertyLookup[id];
     if (!data) return;
     currentPropId = id;
 
-    document.getElementById('modal-img').src = data.image;
-    document.getElementById('modal-img').alt = data.title;
-    document.getElementById('modal-title').textContent = data.title;
-    document.getElementById('modal-location').textContent = data.location;
-    document.getElementById('modal-size').textContent = data.size;
-    document.getElementById('modal-type').textContent = data.type;
-    document.getElementById('modal-frontage').textContent = data.frontage;
-    document.getElementById('modal-zoning').textContent = data.zoning;
-    document.getElementById('modal-possession').textContent = data.possession;
-    document.getElementById('modal-description').textContent = data.description;
+    document.getElementById('modal-img').src = data.image || '';
+    document.getElementById('modal-img').alt = data.title || '';
+    document.getElementById('modal-title').textContent = data.title || '';
+    document.getElementById('modal-location').textContent = data.location || '';
+    document.getElementById('modal-size').textContent = data.size || '';
+    document.getElementById('modal-type').textContent = data.type || '';
+    document.getElementById('modal-frontage').textContent = data.frontage || 'Standard Sector Frontage';
+    document.getElementById('modal-zoning').textContent = data.zoning || 'Commercial';
+    document.getElementById('modal-possession').textContent = data.possession || 'Immediate';
+    document.getElementById('modal-description').textContent = data.description || '';
 
     const highlightsList = document.getElementById('modal-highlights');
     if (highlightsList) {
-      highlightsList.innerHTML = data.highlights
-        .map(h => `<li class="flex items-start gap-2.5 text-sm text-[#33383F]"><svg class="w-4 h-4 text-[#A8885B] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${h}</span></li>`)
+      const hList = data.highlights || [];
+      highlightsList.innerHTML = hList
+        .map(h => `<li class="flex items-start gap-2.5 text-sm text-[#33383F]"><svg class="w-4 h-4 text-[#A8885B] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${escapeHtml(h)}</span></li>`)
         .join('');
     }
 
@@ -189,10 +349,9 @@ function initPropertyModal() {
 
   // Inquire for specific property button
   modalInquireBtn?.addEventListener('click', () => {
-    const data = propertyData[currentPropId];
+    const data = propertyLookup[currentPropId];
     window.closePropertyModal();
 
-    // Fill the message field with specific inquiry
     const messageField = document.getElementById('form-message');
     const propertySelect = document.getElementById('form-property');
     if (data && messageField) {
@@ -256,7 +415,6 @@ function initLeadForm() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic Validation
     const name = document.getElementById('form-name')?.value.trim();
     const phone = document.getElementById('form-phone')?.value.trim();
     const email = document.getElementById('form-email')?.value.trim();
@@ -270,7 +428,6 @@ function initLeadForm() {
       return;
     }
 
-    // Show Loading state
     const submitBtn = document.getElementById('form-submit-btn');
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.disabled = true;
@@ -282,28 +439,25 @@ function initLeadForm() {
       Processing Request...
     `;
 
-    // Simulate submission to backend / CRM
     setTimeout(() => {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnText;
 
-      // Populate Success Modal
       document.getElementById('success-client-name').textContent = name;
       document.getElementById('success-client-phone').textContent = phone;
       
-      // Open Success Modal
       if (successModal) {
         successModal.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
 
-      // Configure direct WhatsApp follow-up button inside success modal
       const successWaBtn = document.getElementById('success-wa-btn');
       if (successWaBtn) {
+        const waNum = window.currentSiteData.contact?.whatsapp || '919876543210';
         const text = encodeURIComponent(
           `Hello Khoraniya Prime Properties, I just submitted an inquiry on your website.\n\nName: ${name}\nPhone: ${phone}\nInterest: ${property || 'Commercial Opportunity'}\nBudget: ${budget || 'Flexible'}\nLocation: ${location || 'Jaipur'}`
         );
-        successWaBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${text}`;
+        successWaBtn.href = `https://wa.me/${waNum}?text=${text}`;
       }
 
       form.reset();
@@ -312,7 +466,7 @@ function initLeadForm() {
 }
 
 /* --------------------------------------------------------------------------
-   5. MOBILE STICKY BOTTOM DOCK (Call / WhatsApp / Enquire)
+   5. MOBILE STICKY BOTTOM DOCK
    -------------------------------------------------------------------------- */
 function initMobileActionBar() {
   const bar = document.querySelector('.mobile-sticky-bar');
@@ -321,7 +475,6 @@ function initMobileActionBar() {
 
   if (!bar) return;
 
-  // Hide bar when the enquiry form or footer is already in view to prevent UI clutter
   const observer = new IntersectionObserver((entries) => {
     const isOverlapping = entries.some(entry => entry.isIntersecting);
     if (isOverlapping) {
@@ -337,7 +490,8 @@ function initMobileActionBar() {
 
 // WhatsApp Helper
 window.openWhatsApp = function(customMsg) {
+  const waNum = window.currentSiteData.contact?.whatsapp || '919876543210';
   const defaultMsg = "Hello Khoraniya Prime Properties, I would like to enquire about commercial plots and investment opportunities in Jaipur.";
   const text = encodeURIComponent(customMsg || defaultMsg);
-  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${text}`, '_blank');
+  window.open(`https://wa.me/${waNum}?text=${text}`, '_blank');
 };

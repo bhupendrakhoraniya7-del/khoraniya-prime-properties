@@ -1,0 +1,69 @@
+{
+  "contact": {
+    "phone": "+91 98765 XXXXX",
+    "rawPhone": "+919876543210",
+    "whatsapp": "919876543210",
+    "email": "enquiry@khoraniyaprime.com",
+    "address": "Civil Lines / C-Scheme, Jaipur, Rajasthan 302001",
+    "tagline": "Invest. Own. Prosper."
+  },
+  "properties": [
+    {
+      "id": "prop-1",
+      "title": "Prime Commercial Avenue",
+      "location": "Jaipur, Rajasthan",
+      "tagline": "Strategic location | High-growth corridor",
+      "size": "2,000 sq. ft.",
+      "type": "Commercial Plot (Category A)",
+      "frontage": "60 Ft. Wide Sector Road",
+      "zoning": "Commercial / Retail / Office Space",
+      "possession": "Immediate / Investment Ready",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      "description": "Positioned on a premier commercial arterial road in Jaipur, this 2,000 sq. ft. plot delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail or commercial ventures.",
+      "highlights": [
+        "60-foot wide road frontage ensuring prominent brand visibility",
+        "Situated in a rapidly appreciating commercial development corridor",
+        "Clear demarcation with verified surrounding infrastructure",
+        "Ideal for multi-story boutique commercial complexes or retail outlets"
+      ]
+    },
+    {
+      "id": "prop-2",
+      "title": "Prime Business District",
+      "location": "Jaipur, Rajasthan",
+      "tagline": "Excellent connectivity | Investment potential",
+      "size": "3,500 sq. ft.",
+      "type": "Commercial Plot (High-Density)",
+      "frontage": "80 Ft. Master Plan Arterial",
+      "zoning": "Corporate & Mixed Commercial Use",
+      "possession": "Ready for Development",
+      "image": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+      "description": "A prestigious commercial plot located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and high rental yield prospects for commercial developers.",
+      "highlights": [
+        "Proximity to major ring corridors and established corporate nodes",
+        "Dual-side accessibility supporting efficient logistics and customer parking",
+        "High anticipated appreciation index backed by municipal infrastructure",
+        "Zoned for corporate offices, diagnostic centers, or hospitality ventures"
+      ]
+    },
+    {
+      "id": "prop-3",
+      "title": "Prime Investment Enclave",
+      "location": "Jaipur, Rajasthan",
+      "tagline": "Growth-focused location | Commercial potential",
+      "size": "5,000 sq. ft.",
+      "type": "Commercial Plot (Flagship Scale)",
+      "frontage": "100 Ft. Main Growth Corridor",
+      "zoning": "Anchor Commercial / Showroom / Institution",
+      "possession": "Strategic Investment Holding",
+      "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      "description": "An expansive 5,000 sq. ft. prime plot tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.",
+      "highlights": [
+        "Generous 100-foot frontage allowing magnificent architectural elevation",
+        "Exceptional transit linkages connecting the airport and regional expressways",
+        "Surrounded by premium upcoming residential catchments driving local commerce",
+        "Unmatched land asset for legacy investors and high-net-worth portfolios"
+      ]
+    }
+  ]
+}

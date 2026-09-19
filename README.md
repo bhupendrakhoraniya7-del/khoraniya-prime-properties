@@ -75,4 +75,14 @@ khoraniya-prime-properties/
 - **Pre-Delivery Checklist & Contrast Compliance**: WCAG AA compliant text contrast across all surfaces.
 
 ---
+
+## 🔐 Visual Admin Portal (CMS)
+
+To add, edit, or delete projects and update company details without touching code:
+1. Open [`admin.html`](file:///c:/Users/bhupendra/Desktop/khoraniya-prime-properties/admin.html) or visit `https://khoraniyaprimeproperties.in/admin.html`.
+2. Enter security PIN: `1234` (can be changed inside the portal).
+3. Manage commercial plots and contact information visually.
+4. Click **"Publish Changes to Live Site"** to push updates directly to GitHub!
+
+---
 © 2026 Khoraniya Prime Properties. All rights reserved.
