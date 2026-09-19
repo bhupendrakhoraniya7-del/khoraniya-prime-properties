@@ -16,34 +16,60 @@ const defaultSiteData = {
     {
       id: "prop-1",
       title: "Prime Commercial Avenue",
-      location: "Jaipur, Rajasthan",
+      location: "Ajmer Road Expressway, Jaipur",
       tagline: "Strategic location | High-growth corridor",
-      size: "2,000 sq. ft.",
+      rate: "₹45,000 / sq. yd",
+      size: "150 – 500 sq. yd",
+      sizes: ["150 sq. yd", "250 sq. yd", "350 sq. yd", "500 sq. yd"],
       type: "Commercial Plot (Category A)",
       frontage: "60 Ft. Wide Sector Road",
-      zoning: "Commercial / Retail / Office Space",
-      possession: "Immediate / Investment Ready",
+      zoning: "Commercial / Retail / Corporate Showroom",
+      possession: "Immediate / Registry Ready",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-      description: "Positioned on a premier commercial arterial road in Jaipur, this 2,000 sq. ft. plot delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail or commercial ventures.",
+      gallery: [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
+      ],
+      roadmap: {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
+        title: "Master Layout & 60 Ft. Road Connectivity Map"
+      },
+      description: "Positioned on a premier commercial arterial road in Jaipur, this project delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail, automotive showrooms, or boutique corporate centers.",
       highlights: [
         "60-foot wide road frontage ensuring prominent brand visibility",
         "Situated in a rapidly appreciating commercial development corridor",
         "Clear demarcation with verified surrounding infrastructure",
-        "Ideal for multi-story boutique commercial complexes or retail outlets"
+        "Multiple plot sizes suitable for retail complexes or flagship showrooms"
       ]
     },
     {
       id: "prop-2",
       title: "Prime Business District",
-      location: "Jaipur, Rajasthan",
+      location: "JLN Marg / Malviya Nagar, Jaipur",
       tagline: "Excellent connectivity | Investment potential",
-      size: "3,500 sq. ft.",
+      rate: "₹68,000 / sq. yd",
+      size: "200 – 750 sq. yd",
+      sizes: ["200 sq. yd", "300 sq. yd", "500 sq. yd", "750 sq. yd"],
       type: "Commercial Plot (High-Density)",
       frontage: "80 Ft. Master Plan Arterial",
       zoning: "Corporate & Mixed Commercial Use",
       possession: "Ready for Development",
       image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
-      description: "A prestigious commercial plot located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and high rental yield prospects for commercial developers.",
+      gallery: [
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
+      ],
+      roadmap: {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
+        title: "80 Ft. Arterial Layout & Sector Plan"
+      },
+      description: "A prestigious commercial plot cluster located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and superior rental yield prospects for commercial developers.",
       highlights: [
         "Proximity to major ring corridors and established corporate nodes",
         "Dual-side accessibility supporting efficient logistics and customer parking",
@@ -54,15 +80,28 @@ const defaultSiteData = {
     {
       id: "prop-3",
       title: "Prime Investment Enclave",
-      location: "Jaipur, Rajasthan",
+      location: "Tonk Road Growth Axis, Jaipur",
       tagline: "Growth-focused location | Commercial potential",
-      size: "5,000 sq. ft.",
+      rate: "₹52,000 / sq. yd",
+      size: "300 – 1,200 sq. yd",
+      sizes: ["300 sq. yd", "500 sq. yd", "800 sq. yd", "1,200 sq. yd"],
       type: "Commercial Plot (Flagship Scale)",
       frontage: "100 Ft. Main Growth Corridor",
       zoning: "Anchor Commercial / Showroom / Institution",
       possession: "Strategic Investment Holding",
       image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-      description: "An expansive 5,000 sq. ft. prime plot tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.",
+      gallery: [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
+      ],
+      roadmap: {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
+        title: "100 Ft. Highway Corridor Master Plan"
+      },
+      description: "An expansive prime plot layout tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.",
       highlights: [
         "Generous 100-foot frontage allowing magnificent architectural elevation",
         "Exceptional transit linkages connecting the airport and regional expressways",
@@ -126,23 +165,39 @@ function renderProperties() {
   if (!grid || !window.currentSiteData.properties) return;
 
   const props = window.currentSiteData.properties;
-  grid.innerHTML = props.map(prop => `
-    <div class="property-card bg-white rounded-lg overflow-hidden flex flex-col justify-between">
+  grid.innerHTML = props.map(prop => {
+    const photoCount = (prop.gallery && prop.gallery.length) || 1;
+    const sizesList = prop.sizes && prop.sizes.length ? prop.sizes : [prop.size || 'Commercial Plot'];
+
+    return `
+    <div class="property-card bg-white rounded-xl overflow-hidden flex flex-col justify-between border border-[#E7E0D5] hover:shadow-lg transition-all duration-300">
       <div>
-        <div class="relative h-60 overflow-hidden bg-stone-100">
+        <div class="relative h-64 overflow-hidden bg-stone-900 group cursor-pointer" onclick="openPropertyModal('${escapeHtml(prop.id)}')">
           <img 
             src="${escapeHtml(prop.image)}" 
             alt="${escapeHtml(prop.title)} - Commercial Plot in Jaipur" 
-            class="property-img w-full h-full object-cover"
+            class="property-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
             onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'"
           >
           <div class="absolute top-3 left-3 bg-[#141619]/90 text-[#D5BA8E] text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded backdrop-blur-sm">
             ${escapeHtml(prop.type || 'Commercial Plot')}
           </div>
-          <div class="absolute bottom-3 right-3 bg-white/95 text-[#141619] text-xs font-bold px-3 py-1 rounded shadow-sm">
-            ${escapeHtml(prop.size || '')}
+          
+          <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded flex items-center gap-1.5 shadow">
+            <svg class="w-3.5 h-3.5 text-[#D5BA8E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>${photoCount} Photos</span>
           </div>
+
+          <div class="absolute bottom-3 right-3 bg-[#141619]/95 text-[#D5BA8E] text-xs font-bold px-3 py-1 rounded shadow-md border border-[#C5A880]/30 backdrop-blur-sm">
+            ${escapeHtml(prop.rate || prop.size || '')}
+          </div>
+
+          ${prop.roadmap ? `
+            <div class="absolute bottom-3 left-3 bg-blue-900/90 text-white text-[10px] font-bold px-2.5 py-1 rounded shadow flex items-center gap-1 backdrop-blur-sm">
+              <span>🗺️ Road Map Attached</span>
+            </div>
+          ` : ''}
         </div>
         
         <div class="p-6">
@@ -152,10 +207,17 @@ function renderProperties() {
             </svg>
             <span>${escapeHtml(prop.location || 'Jaipur, Rajasthan')}</span>
           </div>
-          <h3 class="font-serif text-2xl font-bold text-[#141619] mb-2">${escapeHtml(prop.title)}</h3>
-          <p class="text-xs text-[#A8885B] font-semibold uppercase tracking-wider mb-4">
+          <h3 class="font-serif text-2xl font-bold text-[#141619] mb-1.5">${escapeHtml(prop.title)}</h3>
+          <p class="text-xs text-[#A8885B] font-semibold uppercase tracking-wider mb-3">
             ${escapeHtml(prop.tagline || 'Strategic Commercial Investment')}
           </p>
+
+          <!-- Plot Sizes Badges -->
+          <div class="flex flex-wrap items-center gap-1.5 mb-3">
+            <span class="text-[11px] text-[#555E68] font-semibold">Available Sizes:</span>
+            ${sizesList.map(s => `<span class="text-[10px] bg-[#FAF8F5] text-[#141619] px-2 py-0.5 rounded border border-[#E7E0D5] font-semibold">${escapeHtml(s)}</span>`).join('')}
+          </div>
+
           <p class="text-xs sm:text-[13px] text-[#555E68] line-clamp-2 leading-relaxed">
             ${escapeHtml(prop.description || '')}
           </p>
@@ -163,19 +225,23 @@ function renderProperties() {
       </div>
 
       <div class="p-6 pt-0 border-t border-[#E7E0D5]/60 mt-4 flex items-center justify-between">
-        <span class="text-[11px] uppercase tracking-wider text-[#555E68]">Plot Spec: Available</span>
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-[#88909A] block">Starting Rate</span>
+          <span class="text-sm font-bold text-[#141619]">${escapeHtml(prop.rate || 'On Request')}</span>
+        </div>
         <button onclick="openPropertyModal('${escapeHtml(prop.id)}')" class="btn-outline-gold px-4 py-2 rounded text-xs uppercase tracking-wider font-semibold">
-          View Details
+          View Details & Map
         </button>
       </div>
     </div>
-  `).join('');
+    `;
+  }).join('');
 
   // Also update property options in lead capture dropdown
   const select = document.getElementById('form-property');
   if (select) {
     const defaultOption = '<option value="">Select Category / Plot</option>';
-    const options = props.map(p => `<option value="${escapeHtml(p.title)}">${escapeHtml(p.title)} (${escapeHtml(p.size)})</option>`).join('');
+    const options = props.map(p => `<option value="${escapeHtml(p.title)}">${escapeHtml(p.title)} (${escapeHtml(p.rate || p.size)})</option>`).join('');
     const additionalOptions = `
       <option value="Commercial Land Banking">Long-Term Commercial Land Banking</option>
       <option value="Retail Showroom Plot">Retail / Showroom Plot</option>
@@ -291,21 +357,117 @@ function initNavigation() {
 }
 
 /* --------------------------------------------------------------------------
-   2. PROPERTY MODAL HANDLER
+   2. PROPERTY MODAL HANDLER (WITH MULTI-PHOTO CAROUSEL & ROAD MAP LIGHTBOX)
    -------------------------------------------------------------------------- */
+let activeModalGallery = [];
+let activeModalGalleryIndex = 0;
+let activeSelectedPlotSize = '';
+let currentPropId = null;
+
+function updateModalGalleryStage() {
+  const imgElem = document.getElementById('modal-img');
+  const counterElem = document.getElementById('modal-photo-counter');
+  const thumbsContainer = document.getElementById('modal-thumbnails-container');
+
+  if (!activeModalGallery || activeModalGallery.length === 0) return;
+
+  const currentUrl = activeModalGallery[activeModalGalleryIndex];
+  if (imgElem) {
+    imgElem.src = currentUrl;
+  }
+
+  if (counterElem) {
+    counterElem.textContent = `Photo ${activeModalGalleryIndex + 1} / ${activeModalGallery.length}`;
+  }
+
+  // Update thumbnail active styles
+  if (thumbsContainer) {
+    const thumbButtons = thumbsContainer.querySelectorAll('.modal-thumb-btn');
+    thumbButtons.forEach((btn, idx) => {
+      if (idx === activeModalGalleryIndex) {
+        btn.classList.add('ring-2', 'ring-[#C5A880]', 'opacity-100');
+        btn.classList.remove('opacity-50');
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } else {
+        btn.classList.remove('ring-2', 'ring-[#C5A880]', 'opacity-100');
+        btn.classList.add('opacity-50');
+      }
+    });
+  }
+}
+
+window.navigateModalGallery = function(direction) {
+  if (!activeModalGallery || activeModalGallery.length <= 1) return;
+  activeModalGalleryIndex = (activeModalGalleryIndex + direction + activeModalGallery.length) % activeModalGallery.length;
+  updateModalGalleryStage();
+};
+
+window.selectModalGallerySlide = function(index) {
+  if (!activeModalGallery || index < 0 || index >= activeModalGallery.length) return;
+  activeModalGalleryIndex = index;
+  updateModalGalleryStage();
+};
+
+window.selectModalPlotSize = function(size) {
+  activeSelectedPlotSize = size;
+  const labelElem = document.getElementById('modal-selected-size-text');
+  if (labelElem) labelElem.textContent = size;
+
+  const chips = document.querySelectorAll('.modal-size-chip');
+  chips.forEach(chip => {
+    if (chip.getAttribute('data-size') === size) {
+      chip.className = 'modal-size-chip px-3.5 py-1.5 rounded text-xs font-bold bg-[#C5A880] text-[#141619] border border-[#C5A880] shadow-sm transition-all';
+    } else {
+      chip.className = 'modal-size-chip px-3.5 py-1.5 rounded text-xs font-semibold bg-white text-[#33383F] border border-[#E7E0D5] hover:border-[#C5A880] transition-all';
+    }
+  });
+};
+
+window.openRoadmapLightbox = function(url, title) {
+  const lightbox = document.getElementById('roadmap-lightbox');
+  const img = document.getElementById('lightbox-roadmap-img');
+  const titleElem = document.getElementById('lightbox-roadmap-title');
+  if (!lightbox || !img) return;
+
+  img.src = url;
+  if (titleElem) titleElem.textContent = title || 'Road Map / Master Layout Plan';
+  lightbox.classList.remove('hidden');
+  lightbox.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeRoadmapLightbox = function() {
+  const lightbox = document.getElementById('roadmap-lightbox');
+  if (lightbox) {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    const modalBackdrop = document.getElementById('property-modal');
+    if (!modalBackdrop || !modalBackdrop.classList.contains('active')) {
+      document.body.style.overflow = '';
+    }
+  }
+};
+
 function initPropertyModal() {
   const modalBackdrop = document.getElementById('property-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const modalInquireBtn = document.getElementById('modal-inquire-btn');
-  let currentPropId = null;
+  const prevBtn = document.getElementById('modal-gallery-prev');
+  const nextBtn = document.getElementById('modal-gallery-next');
 
   window.openPropertyModal = function(id) {
     const data = propertyLookup[id];
     if (!data) return;
     currentPropId = id;
 
-    document.getElementById('modal-img').src = data.image || '';
-    document.getElementById('modal-img').alt = data.title || '';
+    // Rate
+    const rateVal = data.rate || 'Price on Request';
+    const rateElem = document.getElementById('modal-rate');
+    if (rateElem) rateElem.textContent = rateVal;
+    const rateBadge = document.getElementById('modal-rate-badge');
+    if (rateBadge) rateBadge.textContent = rateVal;
+
+    // Basic details
     document.getElementById('modal-title').textContent = data.title || '';
     document.getElementById('modal-location').textContent = data.location || '';
     document.getElementById('modal-size').textContent = data.size || '';
@@ -315,6 +477,148 @@ function initPropertyModal() {
     document.getElementById('modal-possession').textContent = data.possession || 'Immediate';
     document.getElementById('modal-description').textContent = data.description || '';
 
+    // Multi-photo Gallery
+    let galleryList = [];
+    if (Array.isArray(data.gallery) && data.gallery.length > 0) {
+      galleryList = [...data.gallery];
+    } else if (data.image) {
+      galleryList = [data.image];
+    } else {
+      galleryList = ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80'];
+    }
+    activeModalGallery = galleryList;
+    activeModalGalleryIndex = 0;
+
+    // Toggle Prev/Next buttons if only 1 image
+    if (prevBtn && nextBtn) {
+      if (galleryList.length > 1) {
+        prevBtn.classList.remove('hidden');
+        nextBtn.classList.remove('hidden');
+      } else {
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+      }
+    }
+
+    // Render Thumbnails Ribbon
+    const thumbsContainer = document.getElementById('modal-thumbnails-container');
+    if (thumbsContainer) {
+      if (galleryList.length > 1) {
+        thumbsContainer.classList.remove('hidden');
+        thumbsContainer.innerHTML = galleryList.map((imgUrl, idx) => `
+          <button type="button" onclick="selectModalGallerySlide(${idx})" data-index="${idx}" class="modal-thumb-btn flex-shrink-0 w-14 h-12 rounded overflow-hidden border border-stone-700 transition-all ${idx === 0 ? 'ring-2 ring-[#C5A880] opacity-100' : 'opacity-50 hover:opacity-100'}">
+            <img src="${escapeHtml(imgUrl)}" alt="Thumbnail ${idx + 1}" class="w-full h-full object-cover">
+          </button>
+        `).join('');
+      } else {
+        thumbsContainer.classList.add('hidden');
+        thumbsContainer.innerHTML = '';
+      }
+    }
+
+    updateModalGalleryStage();
+
+    // Available Plot Sizes (Chips)
+    const chipsContainer = document.getElementById('modal-sizes-chips');
+    const selectedSizeText = document.getElementById('modal-selected-size-text');
+    
+    let sizesArr = [];
+    if (Array.isArray(data.sizes) && data.sizes.length > 0) {
+      sizesArr = data.sizes;
+    } else if (data.size) {
+      sizesArr = [data.size];
+    } else {
+      sizesArr = ['Commercial Plots on Request'];
+    }
+
+    activeSelectedPlotSize = sizesArr[0];
+    if (selectedSizeText) selectedSizeText.textContent = activeSelectedPlotSize;
+
+    if (chipsContainer) {
+      chipsContainer.innerHTML = sizesArr.map((sz, idx) => `
+        <button type="button" data-size="${escapeHtml(sz)}" onclick="selectModalPlotSize('${escapeHtml(sz)}')" class="modal-size-chip px-3.5 py-1.5 rounded text-xs font-semibold transition-all ${idx === 0 ? 'bg-[#C5A880] text-[#141619] border border-[#C5A880] font-bold shadow-sm' : 'bg-white text-[#33383F] border border-[#E7E0D5] hover:border-[#C5A880]'}">
+          ${escapeHtml(sz)}
+        </button>
+      `).join('');
+    }
+
+    // Road Map Section
+    const roadmapTypeBadge = document.getElementById('modal-roadmap-type');
+    const roadmapContent = document.getElementById('modal-roadmap-content');
+    if (roadmapContent) {
+      if (data.roadmap && data.roadmap.url) {
+        const isPdf = (data.roadmap.type === 'pdf') || data.roadmap.url.startsWith('data:application/pdf') || data.roadmap.url.toLowerCase().endsWith('.pdf');
+        if (isPdf) {
+          if (roadmapTypeBadge) {
+            roadmapTypeBadge.textContent = 'PDF Master Plan';
+            roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase';
+          }
+          roadmapContent.innerHTML = `
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded bg-red-50 text-red-600 border border-red-200 flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                  PDF
+                </div>
+                <div>
+                  <h5 class="text-xs sm:text-sm font-bold text-[#141619]">${escapeHtml(data.roadmap.title || 'Official Master Layout & Sector Road Map')}</h5>
+                  <p class="text-[11px] text-[#555E68]">Approved Government / Sector Layout Document</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 w-full sm:w-auto">
+                <a href="${escapeHtml(data.roadmap.url)}" download="${escapeHtml(data.title.replace(/[^a-zA-Z0-9]/g, '_'))}_RoadMap.pdf" target="_blank" class="w-full sm:w-auto text-center px-4 py-2 bg-[#141619] hover:bg-[#A8885B] text-white rounded text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  <span>Download / View PDF</span>
+                </a>
+              </div>
+            </div>
+          `;
+        } else {
+          // Image Roadmap
+          if (roadmapTypeBadge) {
+            roadmapTypeBadge.textContent = 'High-Res Layout Map';
+            roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase';
+          }
+          roadmapContent.innerHTML = `
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
+              <div class="flex items-center gap-3 cursor-pointer" onclick="openRoadmapLightbox('${escapeHtml(data.roadmap.url)}', '${escapeHtml(data.title)} - Road Map')">
+                <img src="${escapeHtml(data.roadmap.url)}" alt="Road Map Preview" class="w-14 h-14 object-cover rounded border border-stone-300 flex-shrink-0 shadow-sm">
+                <div>
+                  <h5 class="text-xs sm:text-sm font-bold text-[#141619] hover:text-[#A8885B] transition-colors">${escapeHtml(data.roadmap.title || 'Master Sector Road Map & Layout')}</h5>
+                  <p class="text-[11px] text-[#555E68]">Click to expand full high-resolution map</p>
+                </div>
+              </div>
+              <button type="button" onclick="openRoadmapLightbox('${escapeHtml(data.roadmap.url)}', '${escapeHtml(data.title)} - Road Map')" class="w-full sm:w-auto px-4 py-2 bg-[#FAF8F5] hover:bg-[#141619] hover:text-white border border-[#A8885B] text-[#141619] rounded text-xs font-semibold transition-all flex items-center justify-center gap-1.5 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                <span>View Full Map</span>
+              </button>
+            </div>
+          `;
+        }
+      } else {
+        if (roadmapTypeBadge) {
+          roadmapTypeBadge.textContent = 'Available on Request';
+          roadmapTypeBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-stone-200 text-stone-700 uppercase';
+        }
+        roadmapContent.innerHTML = `
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-white rounded-lg border border-[#E7E0D5]">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded bg-[#FAF8F5] text-[#A8885B] border border-[#E7E0D5] flex items-center justify-center flex-shrink-0 font-bold text-base">
+                🗺️
+              </div>
+              <div>
+                <h5 class="text-xs sm:text-sm font-bold text-[#141619]">Government-Approved Sector Layout</h5>
+                <p class="text-[11px] text-[#555E68]">Official demarcation & road map available on request</p>
+              </div>
+            </div>
+            <button type="button" onclick="openWhatsApp('Hello Khoraniya Prime Properties, please share the official sector road map and layout for ${escapeHtml(data.title)}')" class="w-full sm:w-auto px-4 py-2 bg-[#25D366] text-white rounded text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Request Map on WhatsApp</span>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    // Highlights
     const highlightsList = document.getElementById('modal-highlights');
     if (highlightsList) {
       const hList = data.highlights || [];
@@ -339,9 +643,15 @@ function initPropertyModal() {
     if (e.target === modalBackdrop) window.closePropertyModal();
   });
 
+  const roadmapLightbox = document.getElementById('roadmap-lightbox');
+  roadmapLightbox?.addEventListener('click', (e) => {
+    if (e.target === roadmapLightbox) window.closeRoadmapLightbox();
+  });
+
   // ESC key listener
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      window.closeRoadmapLightbox();
       window.closePropertyModal();
       window.closeSuccessModal();
     }
@@ -354,8 +664,11 @@ function initPropertyModal() {
 
     const messageField = document.getElementById('form-message');
     const propertySelect = document.getElementById('form-property');
+    const chosenSize = activeSelectedPlotSize || (data ? data.size : '');
+    const chosenRate = data ? (data.rate || 'On Request') : '';
+
     if (data && messageField) {
-      messageField.value = `I would like to receive detailed brochure, site layout, and pricing information for "${data.title}" (${data.size}).`;
+      messageField.value = `I am interested in "${data.title}". Please send brochure, road map, and site visit schedule. Selected Plot Size: ${chosenSize} | Rate: ${chosenRate}.`;
     }
     if (data && propertySelect) {
       propertySelect.value = data.title;

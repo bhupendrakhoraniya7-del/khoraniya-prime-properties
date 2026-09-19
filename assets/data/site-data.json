@@ -11,34 +11,70 @@
     {
       "id": "prop-1",
       "title": "Prime Commercial Avenue",
-      "location": "Jaipur, Rajasthan",
+      "location": "Ajmer Road Expressway, Jaipur",
       "tagline": "Strategic location | High-growth corridor",
-      "size": "2,000 sq. ft.",
+      "rate": "₹45,000 / sq. yd",
+      "size": "150 – 500 sq. yd",
+      "sizes": [
+        "150 sq. yd",
+        "250 sq. yd",
+        "350 sq. yd",
+        "500 sq. yd"
+      ],
       "type": "Commercial Plot (Category A)",
       "frontage": "60 Ft. Wide Sector Road",
-      "zoning": "Commercial / Retail / Office Space",
-      "possession": "Immediate / Investment Ready",
+      "zoning": "Commercial / Retail / Corporate Showroom",
+      "possession": "Immediate / Registry Ready",
       "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-      "description": "Positioned on a premier commercial arterial road in Jaipur, this 2,000 sq. ft. plot delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail or commercial ventures.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "roadmap": {
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
+        "title": "Master Layout & 60 Ft. Road Connectivity Map"
+      },
+      "description": "Positioned on a premier commercial arterial road in Jaipur, this project delivers exceptional visibility, seamless connectivity to transit highways, and high footfall potential for retail, automotive showrooms, or boutique corporate centers.",
       "highlights": [
         "60-foot wide road frontage ensuring prominent brand visibility",
         "Situated in a rapidly appreciating commercial development corridor",
         "Clear demarcation with verified surrounding infrastructure",
-        "Ideal for multi-story boutique commercial complexes or retail outlets"
+        "Multiple plot sizes suitable for retail complexes or flagship showrooms"
       ]
     },
     {
       "id": "prop-2",
       "title": "Prime Business District",
-      "location": "Jaipur, Rajasthan",
+      "location": "JLN Marg / Malviya Nagar, Jaipur",
       "tagline": "Excellent connectivity | Investment potential",
-      "size": "3,500 sq. ft.",
+      "rate": "₹68,000 / sq. yd",
+      "size": "200 – 750 sq. yd",
+      "sizes": [
+        "200 sq. yd",
+        "300 sq. yd",
+        "500 sq. yd",
+        "750 sq. yd"
+      ],
       "type": "Commercial Plot (High-Density)",
       "frontage": "80 Ft. Master Plan Arterial",
       "zoning": "Corporate & Mixed Commercial Use",
       "possession": "Ready for Development",
       "image": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
-      "description": "A prestigious commercial plot located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and high rental yield prospects for commercial developers.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "roadmap": {
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
+        "title": "80 Ft. Arterial Layout & Sector Plan"
+      },
+      "description": "A prestigious commercial plot cluster located in Jaipur’s high-density business cluster, offering rapid transit connectivity, robust underground utility provisions, and superior rental yield prospects for commercial developers.",
       "highlights": [
         "Proximity to major ring corridors and established corporate nodes",
         "Dual-side accessibility supporting efficient logistics and customer parking",
@@ -49,15 +85,33 @@
     {
       "id": "prop-3",
       "title": "Prime Investment Enclave",
-      "location": "Jaipur, Rajasthan",
+      "location": "Tonk Road Growth Axis, Jaipur",
       "tagline": "Growth-focused location | Commercial potential",
-      "size": "5,000 sq. ft.",
+      "rate": "₹52,000 / sq. yd",
+      "size": "300 – 1,200 sq. yd",
+      "sizes": [
+        "300 sq. yd",
+        "500 sq. yd",
+        "800 sq. yd",
+        "1,200 sq. yd"
+      ],
       "type": "Commercial Plot (Flagship Scale)",
       "frontage": "100 Ft. Main Growth Corridor",
       "zoning": "Anchor Commercial / Showroom / Institution",
       "possession": "Strategic Investment Holding",
       "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-      "description": "An expansive 5,000 sq. ft. prime plot tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "roadmap": {
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80",
+        "title": "100 Ft. Highway Corridor Master Plan"
+      },
+      "description": "An expansive prime plot layout tailored for marquee commercial developments, flagship automotive/retail showrooms, or long-term institutional land-banking in Jaipur’s most promising growth zone.",
       "highlights": [
         "Generous 100-foot frontage allowing magnificent architectural elevation",
         "Exceptional transit linkages connecting the airport and regional expressways",

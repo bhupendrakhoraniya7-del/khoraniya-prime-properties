@@ -1296,52 +1296,105 @@
 
 
   <!-- =========================================================================
-       MODAL 1: INTERACTIVE PROPERTY DETAILS MODAL
+       MODAL 1: PROPERTY INSPECTION & DOSSIER MODAL
        ========================================================================= -->
-  <div id="property-modal" class="modal-backdrop fixed inset-0 z-50 bg-[#0B0D0F]/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
-    <div class="modal-panel bg-white w-full max-w-2xl rounded-xl shadow-2xl border border-[#E7E0D5] overflow-hidden flex flex-col max-h-[90vh]">
+  <div id="property-modal" class="modal-backdrop fixed inset-0 z-50 bg-[#0B0D0F]/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
+    <div class="modal-panel bg-white w-full max-w-3xl rounded-2xl shadow-2xl border border-[#E7E0D5] overflow-hidden flex flex-col max-h-[92vh]">
       
-      <!-- Modal Header with Image -->
-      <div class="relative h-56 sm:h-64 overflow-hidden bg-stone-900 flex-shrink-0">
-        <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-        <button id="modal-close-btn" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors">
+      <!-- Modal Header with Multi-Photo Gallery Stage -->
+      <div class="relative h-64 sm:h-80 overflow-hidden bg-stone-950 flex-shrink-0 group">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover transition-all duration-300">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none"></div>
+        
+        <!-- Top Badges -->
+        <div class="absolute top-4 left-4 flex items-center gap-2 z-10">
+          <span id="modal-photo-counter" class="bg-black/75 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded shadow">
+            Photo 1 / 1
+          </span>
+          <span id="modal-rate-badge" class="bg-[#C5A880] text-[#141619] text-xs font-extrabold px-3 py-1 rounded shadow">
+            ₹45,000 / sq. yd
+          </span>
+        </div>
+
+        <!-- Close Button -->
+        <button id="modal-close-btn" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 transition-colors z-10">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
-        <div class="absolute bottom-4 left-6 right-6">
+
+        <!-- Prev / Next Navigation Arrows -->
+        <button id="modal-gallery-prev" onclick="navigateModalGallery(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 transition-colors shadow-lg z-10">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="modal-gallery-next" onclick="navigateModalGallery(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 transition-colors shadow-lg z-10">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+        <!-- Bottom Header Text -->
+        <div class="absolute bottom-4 left-6 right-6 z-10">
           <div class="text-[11px] text-[#D5BA8E] font-semibold tracking-wider uppercase mb-1" id="modal-location"></div>
           <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight" id="modal-title"></h3>
         </div>
       </div>
 
+      <!-- Horizontal Thumbnails Ribbon -->
+      <div id="modal-thumbnails-container" class="bg-[#141619] p-2 flex items-center gap-2 overflow-x-auto border-b border-stone-800">
+        <!-- Thumbnails populated dynamically -->
+      </div>
+
       <!-- Modal Body (Scrollable) -->
       <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
         
-        <!-- Specs Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-lg bg-[#FAF8F5] border border-[#E7E0D5]">
+        <!-- Specs Grid with Rate -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[#FAF8F5] border border-[#E7E0D5]">
           <div>
-            <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Plot Size</div>
-            <div class="font-bold text-sm text-[#141619]" id="modal-size"></div>
+            <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Investment Rate</div>
+            <div class="font-bold text-sm text-[#A8885B]" id="modal-rate"></div>
           </div>
           <div>
-            <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Classification</div>
-            <div class="font-bold text-sm text-[#141619]" id="modal-type"></div>
+            <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Plot Size Range</div>
+            <div class="font-bold text-sm text-[#141619]" id="modal-size"></div>
           </div>
           <div>
             <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Road Width</div>
             <div class="font-bold text-sm text-[#141619]" id="modal-frontage"></div>
           </div>
           <div>
-            <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Zoning</div>
+            <div class="text-[10px] uppercase tracking-wider text-[#555E68]">Zoning / Status</div>
             <div class="font-bold text-sm text-[#141619]" id="modal-zoning"></div>
+          </div>
+        </div>
+
+        <!-- Available Plot Sizes (Selectable Chips) -->
+        <div id="modal-sizes-section" class="p-4 rounded-xl bg-[#FAF8F5] border border-[#E7E0D5] space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs uppercase tracking-wider font-bold text-[#141619]">Available Plot Sizes in this Project</h4>
+            <span class="text-[11px] text-[#A8885B] font-semibold">Click a size to select</span>
+          </div>
+          <div id="modal-sizes-chips" class="flex flex-wrap gap-2 pt-1">
+            <!-- Chips injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Road Map & Layout Plan Section -->
+        <div id="modal-roadmap-section" class="p-4 rounded-xl bg-blue-50/40 border border-blue-100 space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-base">🗺️</span>
+              <h4 class="font-serif text-lg font-bold text-[#141619]">Sector Road Map & Layout Plan</h4>
+            </div>
+            <span id="modal-roadmap-type" class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase">Verified</span>
+          </div>
+          
+          <div id="modal-roadmap-content">
+            <!-- Dynamic map button / preview / pdf download -->
           </div>
         </div>
 
         <!-- Description -->
         <div>
-          <h4 class="font-serif text-lg font-bold text-[#141619] mb-2">Overview</h4>
+          <h4 class="font-serif text-lg font-bold text-[#141619] mb-2">Project Overview</h4>
           <p class="text-xs sm:text-sm text-[#555E68] leading-relaxed" id="modal-description"></p>
         </div>
 
@@ -1354,8 +1407,10 @@
       </div>
 
       <!-- Modal Footer CTA -->
-      <div class="p-4 sm:p-6 bg-[#FAF8F5] border-t border-[#E7E0D5] flex items-center justify-between gap-4 flex-shrink-0">
-        <span class="text-xs text-[#555E68] hidden sm:inline">Receive authenticated survey dossier & plan</span>
+      <div class="p-4 sm:p-6 bg-[#FAF8F5] border-t border-[#E7E0D5] flex flex-col sm:flex-row items-center justify-between gap-4 flex-shrink-0">
+        <span class="text-xs text-[#555E68] text-center sm:text-left">
+          Selected size: <strong id="modal-selected-size-text" class="text-[#141619]">All Sizes</strong>
+        </span>
         <div class="flex items-center gap-3 w-full sm:w-auto">
           <button onclick="window.closePropertyModal()" class="w-1/2 sm:w-auto px-5 py-2.5 rounded border border-[#E7E0D5] text-xs font-semibold text-[#33383F] hover:bg-white transition-colors">
             Close
@@ -1366,6 +1421,18 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Road Map High-Res Lightbox Modal -->
+  <div id="roadmap-lightbox" class="modal-backdrop fixed inset-0 z-[60] bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center">
+      <button onclick="closeRoadmapLightbox()" class="absolute -top-10 right-0 text-white hover:text-[#D5BA8E] flex items-center gap-1.5 text-xs font-semibold bg-black/50 px-3 py-1.5 rounded-full">
+        <span>Close Map (ESC)</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <img id="lightbox-roadmap-img" src="" alt="Road Map Full View" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border border-stone-800">
+      <p id="lightbox-roadmap-title" class="text-white text-xs mt-3 text-center"></p>
     </div>
   </div>
 

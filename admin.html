@@ -347,142 +347,171 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Project Name *</label>
-            <input type="text" id="p-title" required placeholder="e.g. Prime Commercial Boulevard" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <input type="text" id="p-title" required placeholder="e.g. Prime Commercial Boulevard" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Location *</label>
-            <input type="text" id="p-location" required placeholder="e.g. Ajmer Road, Jaipur" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <input type="text" id="p-location" required placeholder="e.g. Ajmer Road, Jaipur" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Plot Size *</label>
-            <input type="text" id="p-size" required placeholder="e.g. 2,500 sq. ft." class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Plot Rate / Price *</label>
+            <input type="text" id="p-rate" required placeholder="e.g. ₹45,000 / sq. yd or ₹65 Lakhs Onwards" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Classification / Type</label>
-            <input type="text" id="p-type" placeholder="e.g. Commercial Plot (Category A)" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <input type="text" id="p-type" placeholder="e.g. Commercial Plot (Category A)" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
         </div>
 
         <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Available Plot Sizes (Comma-separated) *</label>
+          <input type="text" id="p-sizes" required placeholder="e.g. 150 sq. yd, 250 sq. yd, 350 sq. yd, 500 sq. yd" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
+          <p class="text-[11px] text-[#555E68] mt-0.5">Ek se zyada sizes comma (,) lagakar likhein — ye website par clickable buttons banenge.</p>
+        </div>
+
+        <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Tagline / Key Advantage *</label>
-          <input type="text" id="p-tagline" required placeholder="e.g. Strategic location | High-growth corridor" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+          <input type="text" id="p-tagline" required placeholder="e.g. Strategic location | High-growth corridor" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Road Width / Frontage</label>
-            <input type="text" id="p-frontage" placeholder="e.g. 60 Ft. Wide Road" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <input type="text" id="p-frontage" placeholder="e.g. 60 Ft. Wide Road" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Zoning</label>
-            <input type="text" id="p-zoning" placeholder="e.g. Retail / Commercial" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <input type="text" id="p-zoning" placeholder="e.g. Retail / Commercial" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
 
           <div>
             <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Possession Status</label>
-            <input type="text" id="p-possession" placeholder="e.g. Immediate / Ready" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5]">
+            <input type="text" id="p-possession" placeholder="e.g. Immediate / Ready" class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white">
           </div>
         </div>
 
-        <!-- Project Photo Section -->
-        <div class="space-y-2">
-          <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F]">
-            Project Photo * <span class="text-[#88909A] font-normal lowercase">(upload photo, paste image link, or pick preset)</span>
-          </label>
+        <!-- =====================================================================
+             MULTI-PHOTO GALLERY SECTION (15–20 PHOTOS)
+             ===================================================================== -->
+        <div class="space-y-3 p-4 rounded-xl bg-stone-50/80 border border-[#E7E0D5]">
+          <div class="flex items-center justify-between">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F]">
+                Project Photo Gallery (15–20 Photos) *
+              </label>
+              <p class="text-[11px] text-[#555E68]">Select multiple photos from mobile/PC. Star (★) any photo to make it the Main Cover.</p>
+            </div>
+            <span id="gallery-count-badge" class="px-2.5 py-0.5 rounded-full bg-[#141619] text-[#D5BA8E] text-[11px] font-bold">
+              0 Photos
+            </span>
+          </div>
 
-          <!-- Upload Mode Switcher -->
+          <!-- Multi-photo dropzone -->
+          <div 
+            id="gallery-dropzone" 
+            onclick="document.getElementById('gallery-file-input').click()"
+            class="border-2 border-dashed border-[#C5A880]/60 hover:border-[#A8885B] bg-white rounded-xl p-4 text-center cursor-pointer transition-all hover:bg-amber-50/30 flex flex-col items-center justify-center group"
+          >
+            <input type="file" id="gallery-file-input" multiple accept="image/*" class="hidden" onchange="handleGalleryFiles(event)">
+            <div class="w-10 h-10 rounded-full bg-amber-50 group-hover:bg-amber-100 text-[#A8885B] flex items-center justify-center mb-1.5 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <p class="text-xs font-semibold text-[#141619]">+ Select Multiple Photos (Ek saath 15-20 photos select karein)</p>
+            <p class="text-[11px] text-[#555E68] mt-0.5">Click karein ya files yahan drop karein (JPG, PNG, WEBP)</p>
+            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full mt-1.5 font-medium">⚡ Automatic smart compression for superfast website</span>
+          </div>
+
+          <!-- Paste URL / Add Presets row -->
+          <div class="flex items-center gap-2">
+            <input type="text" id="gallery-url-input" placeholder="Ya image URL paste karein (ImgBB link)..." class="flex-1 px-3 py-1.5 text-xs rounded border border-[#E7E0D5] bg-white">
+            <button type="button" onclick="addUrlToGallery()" class="px-3 py-1.5 bg-[#141619] text-[#D5BA8E] text-xs font-semibold rounded hover:bg-black shrink-0">Add URL</button>
+            <button type="button" onclick="addPresetsToGallery()" class="px-3 py-1.5 bg-stone-200 text-stone-700 text-xs font-semibold rounded hover:bg-stone-300 shrink-0">+ Sample Presets</button>
+          </div>
+
+          <!-- Gallery Thumbnails Tray -->
+          <div id="gallery-tray" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2.5 max-h-56 overflow-y-auto p-1 border border-stone-200 rounded-lg bg-white">
+            <!-- Dynamic thumbnails -->
+          </div>
+          <p id="gallery-error-msg" class="text-xs text-red-600 hidden font-medium">Please add at least 1 photo for this project.</p>
+        </div>
+
+        <!-- =====================================================================
+             ROAD MAP & MASTER LAYOUT PLAN SECTION (PHOTO YA PDF)
+             ===================================================================== -->
+        <div class="space-y-3 p-4 rounded-xl bg-stone-50/80 border border-[#E7E0D5]">
+          <div class="flex items-center justify-between">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F]">
+                Road Map & Master Layout Plan (Image ya PDF)
+              </label>
+              <p class="text-[11px] text-[#555E68]">Upload sector road map, blueprint, or approved layout as a Photo (JPG/PNG) or PDF Document.</p>
+            </div>
+            <span id="roadmap-status-badge" class="px-2.5 py-0.5 rounded-full bg-stone-200 text-stone-700 text-[10px] font-semibold">
+              Optional
+            </span>
+          </div>
+
+          <!-- Road Map Options Tabs -->
           <div class="flex items-center gap-2 border-b border-[#E7E0D5] pb-2 text-xs font-medium">
-            <button type="button" onclick="setImageMode('upload')" id="img-tab-upload" class="px-3 py-1.5 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5 transition-colors">
+            <button type="button" onclick="setRoadmapMode('file')" id="rm-tab-file" class="px-3 py-1 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-              <span>Upload from Device</span>
+              <span>Upload File (Photo / PDF)</span>
             </button>
-            <button type="button" onclick="setImageMode('url')" id="img-tab-url" class="px-3 py-1.5 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5 transition-colors">
+            <button type="button" onclick="setRoadmapMode('url')" id="rm-tab-url" class="px-3 py-1 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-              <span>Paste Image Link</span>
-            </button>
-            <button type="button" onclick="setImageMode('preset')" id="img-tab-preset" class="px-3 py-1.5 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5 transition-colors">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <span>Presets</span>
+              <span>Paste Link</span>
             </button>
           </div>
 
-          <!-- Mode 1: Device File Upload Dropzone -->
-          <div id="img-panel-upload" class="space-y-2">
+          <!-- Road Map File Upload -->
+          <div id="rm-panel-file">
             <div 
-              id="dropzone" 
-              onclick="document.getElementById('file-input').click()"
-              class="border-2 border-dashed border-[#C5A880]/60 hover:border-[#A8885B] bg-[#FAF8F5] rounded-xl p-5 text-center cursor-pointer transition-all hover:bg-white flex flex-col items-center justify-center group"
+              id="roadmap-dropzone" 
+              onclick="document.getElementById('roadmap-file-input').click()"
+              class="border-2 border-dashed border-[#C5A880]/60 hover:border-[#A8885B] bg-white rounded-xl p-4 text-center cursor-pointer transition-all hover:bg-amber-50/30 flex flex-col items-center justify-center group"
             >
-              <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
-              <div class="w-11 h-11 rounded-full bg-amber-50 group-hover:bg-amber-100 text-[#A8885B] flex items-center justify-center mb-2 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+              <input type="file" id="roadmap-file-input" accept="image/*,application/pdf" class="hidden" onchange="handleRoadmapFile(event)">
+              <div class="w-10 h-10 rounded-full bg-blue-50 group-hover:bg-blue-100 text-blue-600 flex items-center justify-center mb-1.5 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
               </div>
-              <p class="text-xs font-semibold text-[#141619]">Apne phone ya computer se photo chunein</p>
-              <p class="text-[11px] text-[#555E68] mt-0.5">Click karein ya file yahan drag karke drop karein (JPG, PNG, WEBP)</p>
-              <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full mt-2 font-medium">⚡ Automatic smart optimization for ultra-fast loading</span>
+              <p class="text-xs font-semibold text-[#141619]">Upload Road Map (Image ya PDF document)</p>
+              <p class="text-[11px] text-[#555E68] mt-0.5">Click karein ya file yahan drop karein (PNG, JPG, PDF)</p>
             </div>
           </div>
 
-          <!-- Mode 2: Direct Image URL -->
-          <div id="img-panel-url" class="hidden space-y-2">
-            <input 
-              type="text" 
-              id="p-image-url-input" 
-              placeholder="https://images.unsplash.com/... ya https://i.ibb.co/..." 
-              class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-[#FAF8F5] focus:bg-white"
-              oninput="handleUrlInput(this.value)"
-            >
-            <div class="p-2.5 rounded bg-stone-50 border border-stone-200 text-[11px] text-[#555E68] flex items-center justify-between gap-2">
-              <span>💡 <strong>Free Image Hosting:</strong> Photo ko <a href="https://imgbb.com" target="_blank" class="text-[#A8885B] font-bold underline">ImgBB.com</a> par upload karke direct link yahan daal sakte hain.</span>
-              <a href="https://imgbb.com" target="_blank" class="px-2 py-1 bg-white border rounded text-[10px] font-semibold text-[#141619] hover:bg-stone-100 shrink-0">Open ImgBB ↗</a>
-            </div>
+          <!-- Road Map URL input -->
+          <div id="rm-panel-url" class="hidden">
+            <input type="text" id="roadmap-url-input" placeholder="https://example.com/roadmap.jpg ya .pdf link..." class="w-full px-3 py-2 text-sm rounded border border-[#E7E0D5] bg-white" oninput="handleRoadmapUrlInput(this.value)">
           </div>
 
-          <!-- Mode 3: Presets -->
-          <div id="img-panel-preset" class="hidden space-y-2">
-            <div class="grid grid-cols-3 gap-2">
-              <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80')" class="group p-1.5 rounded border border-stone-200 hover:border-[#A8885B] bg-white text-left transition-all">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=300&q=60" class="w-full h-14 object-cover rounded mb-1">
-                <span class="text-[10px] font-semibold text-[#141619] block group-hover:text-[#A8885B]">Modern Tower</span>
-              </button>
-              <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80')" class="group p-1.5 rounded border border-stone-200 hover:border-[#A8885B] bg-white text-left transition-all">
-                <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=300&q=60" class="w-full h-14 object-cover rounded mb-1">
-                <span class="text-[10px] font-semibold text-[#141619] block group-hover:text-[#A8885B]">Glass Enclave</span>
-              </button>
-              <button type="button" onclick="setPresetImg('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80')" class="group p-1.5 rounded border border-stone-200 hover:border-[#A8885B] bg-white text-left transition-all">
-                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=300&q=60" class="w-full h-14 object-cover rounded mb-1">
-                <span class="text-[10px] font-semibold text-[#141619] block group-hover:text-[#A8885B]">Boulevard Plaza</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Hidden storage field for submission -->
-          <input type="hidden" id="p-image">
-
-          <!-- Live Image Preview Box -->
-          <div id="image-preview-container" class="hidden mt-2 p-3 bg-white rounded-lg border border-[#E7E0D5] flex items-center justify-between gap-3 shadow-sm">
+          <!-- Road Map Active Preview Card -->
+          <div id="roadmap-preview-card" class="hidden p-3 bg-white rounded-lg border border-[#E7E0D5] flex items-center justify-between gap-3">
             <div class="flex items-center gap-3 min-w-0">
-              <img id="image-preview-thumb" src="" alt="Preview" class="w-16 h-12 object-cover rounded border border-stone-200 shrink-0">
+              <div id="roadmap-preview-icon" class="w-12 h-12 rounded bg-amber-50 border border-stone-200 flex items-center justify-center overflow-hidden shrink-0">
+                <!-- Dynamic thumbnail or PDF icon -->
+              </div>
               <div class="min-w-0">
                 <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span class="text-xs font-semibold text-[#141619]">Photo Selected</span>
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                  <span id="roadmap-preview-title" class="text-xs font-semibold text-[#141619]">Road Map Attached</span>
                 </div>
-                <p id="image-preview-meta" class="text-[11px] text-[#555E68] truncate">Ready to display on website</p>
+                <p id="roadmap-preview-meta" class="text-[11px] text-[#555E68] truncate">Ready to display on website</p>
               </div>
             </div>
-            <button type="button" onclick="clearImage()" class="text-xs text-red-600 hover:text-red-800 font-semibold px-2.5 py-1 rounded hover:bg-red-50 shrink-0">
+            <button type="button" onclick="clearRoadmap()" class="text-xs text-red-600 hover:text-red-800 font-semibold px-2.5 py-1 rounded hover:bg-red-50 shrink-0">
               Remove
             </button>
           </div>
-          <p id="image-error-msg" class="text-xs text-red-600 hidden font-medium">Please select or upload a project photo.</p>
         </div>
+
+        <!-- Hidden input storing main cover photo -->
+        <input type="hidden" id="p-image">
 
         <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-[#33383F] mb-1">Description / Overview *</label>
@@ -524,7 +553,8 @@
       renderAdminProjects();
       populateContactForm();
       loadSavedToken();
-      initDropzone();
+      initGalleryDropzone();
+      initRoadmapDropzone();
     });
 
     // --------------------------------------------------------------------------
@@ -631,20 +661,32 @@
       list.innerHTML = siteData.properties.map((prop, idx) => `
         <div class="bg-white rounded-xl border border-[#E7E0D5] overflow-hidden shadow-sm flex flex-col justify-between">
           <div>
-            <div class="relative h-44 overflow-hidden bg-stone-100">
+            <div class="relative h-48 overflow-hidden bg-stone-100">
               <img src="${escapeHtml(prop.image)}" alt="${escapeHtml(prop.title)}" class="w-full h-full object-cover">
               <div class="absolute top-3 left-3 bg-[#141619]/90 text-[#D5BA8E] text-[10px] font-semibold uppercase px-2.5 py-1 rounded">
                 ${escapeHtml(prop.type || 'Commercial Plot')}
               </div>
-              <div class="absolute bottom-3 right-3 bg-white text-[#141619] text-xs font-bold px-2.5 py-1 rounded shadow">
-                ${escapeHtml(prop.size || '')}
+              <div class="absolute top-3 right-3 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1 shadow">
+                <svg class="w-3 h-3 text-[#D5BA8E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <span>${(prop.gallery && prop.gallery.length) || 1} Photos</span>
+              </div>
+              <div class="absolute bottom-3 right-3 bg-[#141619] text-[#D5BA8E] text-xs font-bold px-2.5 py-1 rounded shadow border border-[#C5A880]/30">
+                ${escapeHtml(prop.rate || prop.size || '')}
               </div>
             </div>
 
             <div class="p-5">
-              <div class="text-[11px] text-[#555E68] mb-1">${escapeHtml(prop.location || 'Jaipur, Rajasthan')}</div>
+              <div class="flex items-center justify-between text-[11px] text-[#555E68] mb-1">
+                <span>${escapeHtml(prop.location || 'Jaipur, Rajasthan')}</span>
+                ${prop.roadmap ? '<span class="text-[10px] bg-blue-50 text-blue-700 font-semibold px-2 py-0.5 rounded border border-blue-200">🗺️ Road Map Attached</span>' : ''}
+              </div>
               <h3 class="font-serif text-xl font-bold text-[#141619] mb-1">${escapeHtml(prop.title)}</h3>
-              <p class="text-xs text-[#A8885B] font-semibold mb-3">${escapeHtml(prop.tagline || '')}</p>
+              <p class="text-xs text-[#A8885B] font-semibold mb-2">${escapeHtml(prop.tagline || '')}</p>
+              
+              <div class="flex flex-wrap gap-1 mb-3">
+                ${(prop.sizes && prop.sizes.length ? prop.sizes : [prop.size || 'Standard Size']).map(s => `<span class="text-[10px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded border border-stone-200 font-medium">${escapeHtml(s)}</span>`).join('')}
+              </div>
+
               <p class="text-xs text-[#555E68] line-clamp-2">${escapeHtml(prop.description || '')}</p>
             </div>
           </div>
@@ -667,10 +709,185 @@
     }
 
     // --------------------------------------------------------------------------
-    // PHOTO UPLOAD, DRAG & DROP AND COMPRESSION LOGIC
+    // MULTI-PHOTO GALLERY & ROAD MAP MANAGEMENT
     // --------------------------------------------------------------------------
-    function initDropzone() {
-      const dropzone = document.getElementById('dropzone');
+    let currentGallery = [];
+    let currentCoverIndex = 0;
+    let currentRoadmap = null;
+
+    // Gallery Dropzone
+    function initGalleryDropzone() {
+      const dropzone = document.getElementById('gallery-dropzone');
+      if (!dropzone) return;
+
+      ['dragenter', 'dragover'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzone.classList.add('border-[#A8885B]', 'bg-amber-50/50');
+        });
+      });
+      ['dragleave', 'drop'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('border-[#A8885B]', 'bg-amber-50/50');
+        });
+      });
+      dropzone.addEventListener('drop', (e) => {
+        if (e.dataTransfer.files && e.dataTransfer.files.length) {
+          processBatchFiles(Array.from(e.dataTransfer.files));
+        }
+      });
+    }
+
+    function handleGalleryFiles(e) {
+      if (e.target.files && e.target.files.length) {
+        processBatchFiles(Array.from(e.target.files));
+      }
+    }
+
+    function processBatchFiles(files) {
+      const imgFiles = files.filter(f => f.type.startsWith('image/'));
+      if (!imgFiles.length) {
+        alert('Please select valid image files (JPG, PNG, WEBP).');
+        return;
+      }
+
+      showToast(`Optimizing ${imgFiles.length} photos...`);
+      let processed = 0;
+
+      imgFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            const MAX_WIDTH = 1200;
+            const MAX_HEIGHT = 800;
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+              if (width > MAX_WIDTH) {
+                height = Math.round((height * MAX_WIDTH) / width);
+                width = MAX_WIDTH;
+              }
+            } else {
+              if (height > MAX_HEIGHT) {
+                width = Math.round((width * MAX_HEIGHT) / height);
+                height = MAX_HEIGHT;
+              }
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.80);
+            currentGallery.push(compressedDataUrl);
+            processed++;
+
+            if (processed === imgFiles.length) {
+              renderGalleryTray();
+              showToast(`${processed} photos added to gallery!`);
+            }
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderGalleryTray() {
+      const tray = document.getElementById('gallery-tray');
+      const countEl = document.getElementById('gallery-count-badge');
+      const errEl = document.getElementById('gallery-error-msg');
+      if (!tray) return;
+
+      countEl.textContent = `${currentGallery.length} Photos`;
+
+      if (currentGallery.length === 0) {
+        tray.innerHTML = `
+          <div class="col-span-full py-8 text-center text-xs text-stone-400">
+            No photos added yet. Click above to select 15–20 photos from your phone or PC.
+          </div>
+        `;
+        document.getElementById('p-image').value = '';
+        return;
+      }
+
+      if (errEl) errEl.classList.add('hidden');
+      if (currentCoverIndex >= currentGallery.length) currentCoverIndex = 0;
+      document.getElementById('p-image').value = currentGallery[currentCoverIndex] || '';
+
+      tray.innerHTML = currentGallery.map((imgUrl, idx) => {
+        const isCover = idx === currentCoverIndex;
+        return `
+          <div class="relative group rounded-lg overflow-hidden border-2 ${isCover ? 'border-[#A8885B] shadow-md' : 'border-stone-200'} bg-stone-100 aspect-video flex flex-col justify-between">
+            <img src="${escapeHtml(imgUrl)}" alt="Gallery Photo ${idx + 1}" class="w-full h-full object-cover">
+            
+            ${isCover ? `
+              <div class="absolute top-1 left-1 bg-[#141619] text-[#D5BA8E] text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                ★ Main Cover
+              </div>
+            ` : ''}
+
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-1">
+              ${!isCover ? `
+                <button type="button" onclick="setCover(${idx})" class="text-[10px] bg-white text-[#141619] font-bold px-2 py-1 rounded hover:bg-[#D5BA8E]">
+                  Make Cover
+                </button>
+              ` : ''}
+              <button type="button" onclick="removeGalleryItem(${idx})" class="text-[10px] bg-red-600 text-white font-bold p-1 rounded hover:bg-red-700" title="Delete Photo">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setCover(idx) {
+      currentCoverIndex = idx;
+      renderGalleryTray();
+      showToast('Cover photo updated!');
+    }
+
+    function removeGalleryItem(idx) {
+      currentGallery.splice(idx, 1);
+      if (currentCoverIndex >= currentGallery.length) {
+        currentCoverIndex = Math.max(0, currentGallery.length - 1);
+      }
+      renderGalleryTray();
+    }
+
+    function addUrlToGallery() {
+      const input = document.getElementById('gallery-url-input');
+      const url = input.value.trim();
+      if (!url) return;
+      currentGallery.push(url);
+      input.value = '';
+      renderGalleryTray();
+      showToast('Photo URL added to gallery!');
+    }
+
+    function addPresetsToGallery() {
+      const presets = [
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
+      ];
+      presets.forEach(p => currentGallery.push(p));
+      renderGalleryTray();
+      showToast('Luxury presets added to gallery!');
+    }
+
+    // --------------------------------------------------------------------------
+    // ROAD MAP & MASTER PLAN (IMAGE / PDF) LOGIC
+    // --------------------------------------------------------------------------
+    function initRoadmapDropzone() {
+      const dropzone = document.getElementById('roadmap-dropzone');
       if (!dropzone) return;
 
       ['dragenter', 'dragover'].forEach(name => {
@@ -687,135 +904,169 @@
       });
       dropzone.addEventListener('drop', (e) => {
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-          processImageFile(e.dataTransfer.files[0]);
+          processRoadmapFile(e.dataTransfer.files[0]);
         }
       });
     }
 
-    function setImageMode(mode) {
-      document.getElementById('img-panel-upload').classList.toggle('hidden', mode !== 'upload');
-      document.getElementById('img-panel-url').classList.toggle('hidden', mode !== 'url');
-      document.getElementById('img-panel-preset').classList.toggle('hidden', mode !== 'preset');
+    function setRoadmapMode(mode) {
+      document.getElementById('rm-panel-file').classList.toggle('hidden', mode !== 'file');
+      document.getElementById('rm-panel-url').classList.toggle('hidden', mode !== 'url');
 
-      const btnUpload = document.getElementById('img-tab-upload');
-      const btnUrl = document.getElementById('img-tab-url');
-      const btnPreset = document.getElementById('img-tab-preset');
+      const btnFile = document.getElementById('rm-tab-file');
+      const btnUrl = document.getElementById('rm-tab-url');
 
-      [btnUpload, btnUrl, btnPreset].forEach(b => {
-        b.className = 'px-3 py-1.5 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5 transition-colors';
-      });
+      btnFile.className = 'px-3 py-1 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5';
+      btnUrl.className = 'px-3 py-1 rounded bg-stone-100 text-[#555E68] hover:bg-stone-200 flex items-center gap-1.5';
 
-      const activeBtn = mode === 'upload' ? btnUpload : mode === 'url' ? btnUrl : btnPreset;
-      activeBtn.className = 'px-3 py-1.5 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5 transition-colors';
+      if (mode === 'file') {
+        btnFile.className = 'px-3 py-1 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5';
+      } else {
+        btnUrl.className = 'px-3 py-1 rounded bg-[#141619] text-[#D5BA8E] font-semibold flex items-center gap-1.5';
+      }
     }
 
-    function handleFileSelect(e) {
+    function handleRoadmapFile(e) {
       const file = e.target.files && e.target.files[0];
-      if (file) processImageFile(file);
+      if (file) processRoadmapFile(file);
     }
 
-    function processImageFile(file) {
-      if (!file.type.startsWith('image/')) {
-        alert('Please select a valid image file (JPG, PNG, or WEBP).');
+    function processRoadmapFile(file) {
+      const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+      const isImg = file.type.startsWith('image/');
+
+      if (!isPdf && !isImg) {
+        alert('Please select an Image (PNG, JPG) or PDF document.');
         return;
       }
 
-      showToast('Optimizing photo for web display...');
+      showToast(`Processing Road Map (${isPdf ? 'PDF Document' : 'High-Res Image'})...`);
 
       const reader = new FileReader();
       reader.onload = (event) => {
-        const img = new Image();
-        img.onload = () => {
-          // Responsive bounds (1200x800 maximum)
-          const MAX_WIDTH = 1200;
-          const MAX_HEIGHT = 800;
-          let width = img.width;
-          let height = img.height;
+        if (isPdf) {
+          currentRoadmap = {
+            type: 'pdf',
+            url: event.target.result,
+            title: file.name
+          };
+          renderRoadmapPreview();
+          showToast('Road Map PDF document attached!');
+        } else {
+          // Compress image for crisp blueprint readability
+          const img = new Image();
+          img.onload = () => {
+            const MAX_WIDTH = 1600;
+            const MAX_HEIGHT = 1200;
+            let width = img.width;
+            let height = img.height;
 
-          if (width > height) {
-            if (width > MAX_WIDTH) {
-              height = Math.round((height * MAX_WIDTH) / width);
-              width = MAX_WIDTH;
+            if (width > height) {
+              if (width > MAX_WIDTH) {
+                height = Math.round((height * MAX_WIDTH) / width);
+                width = MAX_WIDTH;
+              }
+            } else {
+              if (height > MAX_HEIGHT) {
+                width = Math.round((width * MAX_HEIGHT) / height);
+                height = MAX_HEIGHT;
+              }
             }
-          } else {
-            if (height > MAX_HEIGHT) {
-              width = Math.round((width * MAX_HEIGHT) / height);
-              height = MAX_HEIGHT;
-            }
-          }
 
-          const canvas = document.createElement('canvas');
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
 
-          // Highly optimized JPEG at 82% quality
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
-          const approxKb = Math.round((compressedDataUrl.length * 0.75) / 1024);
-
-          setImageValue(compressedDataUrl, `${file.name} (${width}×${height}px • ${approxKb} KB)`);
-          showToast(`Photo optimized successfully (${approxKb} KB)!`);
-        };
-        img.src = event.target.result;
+            currentRoadmap = {
+              type: 'image',
+              url: canvas.toDataURL('image/jpeg', 0.85),
+              title: file.name
+            };
+            renderRoadmapPreview();
+            showToast('Road Map image attached!');
+          };
+          img.src = event.target.result;
+        }
       };
       reader.readAsDataURL(file);
     }
 
-    function setImageValue(val, meta = 'Ready for display') {
-      document.getElementById('p-image').value = val;
-      const isData = val.startsWith('data:');
-      document.getElementById('p-image-url-input').value = isData ? '' : val;
-
-      const preview = document.getElementById('image-preview-container');
-      const thumb = document.getElementById('image-preview-thumb');
-      const metaEl = document.getElementById('image-preview-meta');
-      const errEl = document.getElementById('image-error-msg');
-
-      if (val) {
-        thumb.src = val;
-        metaEl.textContent = meta;
-        preview.classList.remove('hidden');
-        if (errEl) errEl.classList.add('hidden');
-      } else {
-        preview.classList.add('hidden');
-      }
-    }
-
-    function clearImage() {
-      document.getElementById('p-image').value = '';
-      document.getElementById('p-image-url-input').value = '';
-      const fileInput = document.getElementById('file-input');
-      if (fileInput) fileInput.value = '';
-      document.getElementById('image-preview-container').classList.add('hidden');
-    }
-
-    function handleUrlInput(url) {
+    function handleRoadmapUrlInput(url) {
       const clean = url.trim();
-      if (clean) {
-        setImageValue(clean, 'External Image Link');
+      if (!clean) {
+        clearRoadmap();
+        return;
+      }
+      const isPdf = clean.toLowerCase().includes('.pdf');
+      currentRoadmap = {
+        type: isPdf ? 'pdf' : 'image',
+        url: clean,
+        title: isPdf ? 'Master Layout Plan (PDF)' : 'Sector Road & Master Plan'
+      };
+      renderRoadmapPreview();
+    }
+
+    function renderRoadmapPreview() {
+      const card = document.getElementById('roadmap-preview-card');
+      const iconEl = document.getElementById('roadmap-preview-icon');
+      const titleEl = document.getElementById('roadmap-preview-title');
+      const metaEl = document.getElementById('roadmap-preview-meta');
+      const badge = document.getElementById('roadmap-status-badge');
+
+      if (!card || !currentRoadmap) return;
+
+      card.classList.remove('hidden');
+      badge.textContent = 'Attached ✓';
+      badge.className = 'px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold border border-blue-200';
+
+      if (currentRoadmap.type === 'pdf') {
+        iconEl.innerHTML = `
+          <svg class="w-7 h-7 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        `;
+        titleEl.textContent = currentRoadmap.title || 'Master Layout Plan (PDF)';
+        metaEl.textContent = 'PDF Document — Ready for investor download/viewing';
       } else {
-        clearImage();
+        iconEl.innerHTML = `
+          <img src="${escapeHtml(currentRoadmap.url)}" alt="Roadmap" class="w-full h-full object-cover">
+        `;
+        titleEl.textContent = currentRoadmap.title || 'Road Map / Blueprint';
+        metaEl.textContent = 'High-Resolution Map Image — Ready for layout zoom';
       }
     }
 
-    function setPresetImg(url) {
-      setImageValue(url, 'Selected Luxury Architectural Preset');
-      setImageMode('preset');
-      showToast('Preset photo selected!');
+    function clearRoadmap() {
+      currentRoadmap = null;
+      const card = document.getElementById('roadmap-preview-card');
+      const badge = document.getElementById('roadmap-status-badge');
+      const fileInput = document.getElementById('roadmap-file-input');
+      const urlInput = document.getElementById('roadmap-url-input');
+
+      if (card) card.classList.add('hidden');
+      if (badge) {
+        badge.textContent = 'Optional';
+        badge.className = 'px-2.5 py-0.5 rounded-full bg-stone-200 text-stone-700 text-[10px] font-semibold';
+      }
+      if (fileInput) fileInput.value = '';
+      if (urlInput) urlInput.value = '';
     }
 
-    // Open Modal for Add
+    // --------------------------------------------------------------------------
+    // PROJECT MODALS: OPEN & SAVE
+    // --------------------------------------------------------------------------
     function openAddProjectModal() {
       document.getElementById('modal-project-heading').textContent = 'Add New Project / Plot';
       document.getElementById('p-id').value = '';
       document.getElementById('project-form').reset();
-      clearImage();
-      setImageMode('upload');
+      currentGallery = [];
+      currentCoverIndex = 0;
+      currentRoadmap = null;
+      renderGalleryTray();
+      clearRoadmap();
       document.getElementById('project-modal').classList.add('active');
     }
 
-    // Open Modal for Edit
     function openEditProjectModal(id) {
       const prop = siteData.properties.find(p => p.id === id);
       if (!prop) return;
@@ -824,7 +1075,8 @@
       document.getElementById('p-id').value = prop.id;
       document.getElementById('p-title').value = prop.title || '';
       document.getElementById('p-location').value = prop.location || '';
-      document.getElementById('p-size').value = prop.size || '';
+      document.getElementById('p-rate').value = prop.rate || '';
+      document.getElementById('p-sizes').value = (prop.sizes && prop.sizes.length ? prop.sizes.join(', ') : prop.size) || '';
       document.getElementById('p-type').value = prop.type || '';
       document.getElementById('p-tagline').value = prop.tagline || '';
       document.getElementById('p-frontage').value = prop.frontage || '';
@@ -833,16 +1085,23 @@
       document.getElementById('p-desc').value = prop.description || '';
       document.getElementById('p-highlights').value = (prop.highlights || []).join('\n');
 
-      if (prop.image) {
-        setImageValue(prop.image, 'Current Project Photo');
-        if (prop.image.startsWith('data:')) {
-          setImageMode('upload');
-        } else {
-          setImageMode('url');
-        }
+      // Gallery Loading
+      if (prop.gallery && prop.gallery.length > 0) {
+        currentGallery = [...prop.gallery];
+      } else if (prop.image) {
+        currentGallery = [prop.image];
       } else {
-        clearImage();
-        setImageMode('upload');
+        currentGallery = [];
+      }
+      currentCoverIndex = 0;
+      renderGalleryTray();
+
+      // Road Map Loading
+      if (prop.roadmap) {
+        currentRoadmap = prop.roadmap;
+        renderRoadmapPreview();
+      } else {
+        clearRoadmap();
       }
 
       document.getElementById('project-modal').classList.add('active');
@@ -856,26 +1115,47 @@
     document.getElementById('project-form').addEventListener('submit', (e) => {
       e.preventDefault();
 
+      if (!currentGallery.length) {
+        document.getElementById('gallery-error-msg').classList.remove('hidden');
+        alert('Please add at least 1 photo for this project.');
+        return;
+      }
+
       const idInput = document.getElementById('p-id').value;
       const title = document.getElementById('p-title').value.trim();
       const location = document.getElementById('p-location').value.trim();
-      const size = document.getElementById('p-size').value.trim();
+      const rate = document.getElementById('p-rate').value.trim();
+      const sizesText = document.getElementById('p-sizes').value.trim();
       const type = document.getElementById('p-type').value.trim();
       const tagline = document.getElementById('p-tagline').value.trim();
       const frontage = document.getElementById('p-frontage').value.trim();
       const zoning = document.getElementById('p-zoning').value.trim();
       const possession = document.getElementById('p-possession').value.trim();
-      const image = document.getElementById('p-image').value.trim();
       const description = document.getElementById('p-desc').value.trim();
       const highlightsText = document.getElementById('p-highlights').value.trim();
 
-      if (!image) {
-        document.getElementById('image-error-msg').classList.remove('hidden');
-        alert('Please upload or select a photo for this project.');
-        return;
-      }
-
+      const sizes = sizesText ? sizesText.split(',').map(s => s.trim()).filter(Boolean) : [];
+      const size = sizes.length > 1 ? `${sizes[0]} – ${sizes[sizes.length - 1]}` : (sizes[0] || 'Standard Plot');
+      const image = currentGallery[currentCoverIndex] || currentGallery[0];
       const highlights = highlightsText ? highlightsText.split('\n').map(h => h.trim()).filter(Boolean) : [];
+
+      const projectData = {
+        title,
+        location,
+        rate,
+        sizes,
+        size,
+        type,
+        tagline,
+        frontage,
+        zoning,
+        possession,
+        image,
+        gallery: currentGallery,
+        roadmap: currentRoadmap,
+        description,
+        highlights
+      };
 
       if (idInput) {
         // Update existing
@@ -883,7 +1163,7 @@
         if (index !== -1) {
           siteData.properties[index] = {
             ...siteData.properties[index],
-            title, location, size, type, tagline, frontage, zoning, possession, image, description, highlights
+            ...projectData
           };
           showToast('Project updated successfully!');
         }
@@ -892,7 +1172,7 @@
         const newId = 'prop-' + Date.now();
         siteData.properties.push({
           id: newId,
-          title, location, size, type, tagline, frontage, zoning, possession, image, description, highlights
+          ...projectData
         });
         showToast('New project added successfully!');
       }
