@@ -5,11 +5,11 @@
 // Fallback Default Data in case fetch is blocked (e.g. local file:// protocol)
 const defaultSiteData = {
   contact: {
-    phone: "+91 98765 XXXXX",
-    rawPhone: "+919876543210",
-    whatsapp: "919876543210",
+    phone: "7689932586",
+    rawPhone: "7689932586",
+    whatsapp: "7689932586",
     email: "enquiry@khoraniyaprime.com",
-    address: "Civil Lines / C-Scheme, Jaipur, Rajasthan 302001",
+    address: "Jaipur, Rajasthan 302001",
     tagline: "Invest. Own. Prosper."
   },
   properties: [
@@ -305,25 +305,70 @@ function renderProperties() {
   }
 }
 
+function formatWhatsAppUrlNumber(num) {
+  if (!num) return '917689932586';
+  let clean = num.toString().replace(/\D/g, '');
+  if (clean.length === 10) {
+    clean = '91' + clean;
+  } else if (clean.length === 11 && clean.startsWith('0')) {
+    clean = '91' + clean.slice(1);
+  }
+  return clean || '917689932586';
+}
+
+function formatDisplayPhoneNumber(num) {
+  if (!num) return '+91 7689932586';
+  let clean = num.toString().trim();
+  if (clean.startsWith('+')) return clean;
+  let digits = clean.replace(/\D/g, '');
+  if (digits.length === 10) {
+    return '+91 ' + digits;
+  }
+  if (digits.length === 12 && digits.startsWith('91')) {
+    return '+91 ' + digits.slice(2);
+  }
+  return clean;
+}
+
 /**
  * Bind Contact Info Dynamically Across Website
  */
 function bindContactInfo() {
   const contact = window.currentSiteData.contact || defaultSiteData.contact;
 
+  const displayPhone = formatDisplayPhoneNumber(contact.phone || '7689932586');
+  const rawCallNum = (contact.rawPhone || contact.phone || '7689932586').toString().replace(/\D/g, '');
+  const displayWa = formatDisplayPhoneNumber(contact.whatsapp || '7689932586');
+  const waUrlNum = formatWhatsAppUrlNumber(contact.whatsapp || '7689932586');
+  const telHref = `tel:+${rawCallNum.length === 10 ? '91' + rawCallNum : rawCallNum}`;
+
   // Phone
   document.querySelectorAll('[data-bind="phone"]').forEach(el => {
-    el.textContent = contact.phone || '+91 98765 XXXXX';
+    el.textContent = displayPhone;
+    if (el.tagName === 'A') {
+      el.href = telHref;
+    }
+  });
+
+  // WhatsApp
+  document.querySelectorAll('[data-bind="whatsapp"]').forEach(el => {
+    el.textContent = displayWa;
+    if (el.tagName === 'A') {
+      el.href = `https://wa.me/${waUrlNum}`;
+    }
   });
 
   // Raw Phone / Call links
   document.querySelectorAll('a[href^="tel:"]').forEach(el => {
-    el.href = `tel:${contact.rawPhone || '+919876543210'}`;
+    el.href = telHref;
   });
 
   // Email
   document.querySelectorAll('[data-bind="email"]').forEach(el => {
     el.textContent = contact.email || 'enquiry@khoraniyaprime.com';
+    if (el.tagName === 'A') {
+      el.href = `mailto:${contact.email || 'enquiry@khoraniyaprime.com'}`;
+    }
   });
 
   // Address
@@ -843,7 +888,8 @@ function initLeadForm() {
 
       const successWaBtn = document.getElementById('success-wa-btn');
       if (successWaBtn) {
-        const waNum = window.currentSiteData.contact?.whatsapp || '919876543210';
+        const rawWa = window.currentSiteData?.contact?.whatsapp || '7689932586';
+        const waNum = formatWhatsAppUrlNumber(rawWa);
         const text = encodeURIComponent(
           `Hello Khoraniya Prime Properties, I just submitted an inquiry on your website.\n\nName: ${name}\nPhone: ${phone}\nInterest: ${property || 'Commercial Opportunity'}\nBudget: ${budget || 'Flexible'}\nLocation: ${location || 'Jaipur'}`
         );
@@ -880,7 +926,8 @@ function initMobileActionBar() {
 
 // WhatsApp Helper
 window.openWhatsApp = function(customMsg) {
-  const waNum = window.currentSiteData.contact?.whatsapp || '919876543210';
+  const rawWa = window.currentSiteData?.contact?.whatsapp || '7689932586';
+  const waNum = formatWhatsAppUrlNumber(rawWa);
   const defaultMsg = "Hello Khoraniya Prime Properties, I would like to enquire about commercial plots and investment opportunities in Jaipur.";
   const text = encodeURIComponent(customMsg || defaultMsg);
   window.open(`https://wa.me/${waNum}?text=${text}`, '_blank');
